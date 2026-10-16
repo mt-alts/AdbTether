@@ -1,0 +1,25 @@
+# --- Rust ---
+/target/
+
+# --- .NET ---
+[Bb]in/
+[Oo]bj/
+*.user
+*.suo
+
+# --- Visual Studio ---
+.vs/
+
+# --- Installer output ---
+/installer/dist/
+*.wixpdb
+
+# --- Logs ---
+*.log
+
+# --- Editors / OS ---
+.idea/
+.vscode/
+Thumbs.db
+.DS_Store
+*.swp

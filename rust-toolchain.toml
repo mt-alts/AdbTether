@@ -1,0 +1,3 @@
+[toolchain]
+# Cargo.lock uses lockfile version 4, which requires Rust >= 1.83.
+channel = "1.93.0"

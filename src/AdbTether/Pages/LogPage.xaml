@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="AdbTether.Pages.LogPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:AdbTether.ViewModels">
+
+    <Grid Padding="20,14,20,18">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" CornerRadius="10" BorderThickness="1"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" Padding="12,10">
+            <ScrollViewer x:Name="LogScroll" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto" ViewChanged="LogScroll_ViewChanged">
+                <ItemsControl ItemsSource="{Binding Entries}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:LogEntry">
+                            <TextBlock Text="{Binding Text}" FontFamily="Cascadia Mono, Consolas"
+                                       FontSize="11.5" Foreground="{Binding Brush}"
+                                       TextWrapping="NoWrap" Margin="0,1.5"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+        </Border>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="8" Margin="0,10,0,0"
+                    HorizontalAlignment="Right">
+            <Button Content="Copy" Command="{Binding CopyCommand}" Padding="12,5"/>
+            <Button Content="Clear" Command="{Binding ClearCommand}" Padding="12,5"/>
+        </StackPanel>
+    </Grid>
+</Page>

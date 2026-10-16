@@ -1,0 +1,32 @@
+﻿name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Test Rust crates
+        run: cargo test --workspace
+
+      - name: Build engine
+        run: cargo build --release -p adbtether-engine
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
+      - name: Build service
+        run: dotnet build src/AdbTetherService -c Release
+
+      - name: Build UI
+        run: dotnet build src/AdbTether -c Release -p:Platform=x64

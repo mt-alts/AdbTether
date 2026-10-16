@@ -1,0 +1,173 @@
+﻿<Page
+    x:Class="AdbTether.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:viewModels="using:AdbTether.ViewModels">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Spacing="14" Padding="20,14,20,18">
+
+            <!-- Section header -->
+            <TextBlock Text="Settings" FontSize="20" FontWeight="SemiBold"
+                       Foreground="{ThemeResource TextFillColorPrimaryBrush}" Margin="0,0,0,2"/>
+
+            <!-- Appearance card -->
+            <Border CornerRadius="8" BorderThickness="1"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+
+                <StackPanel>
+                    <Grid Padding="16,14,16,10" ColumnSpacing="10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;"
+                                  FontSize="16" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="Appearance" FontSize="14" FontWeight="SemiBold"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock Text="Theme and accent color for the app" FontSize="12"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Theme -->
+                    <Grid Padding="16,12" ColumnSpacing="14" BorderThickness="0,1,0,0"
+                          BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="2" VerticalAlignment="Center">
+                            <TextBlock Text="Theme" FontSize="13"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock Text="Choose how the app looks" FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <ComboBox Grid.Column="1" MinWidth="140"
+                                  ItemsSource="{Binding Settings.ThemeNames}"
+                                  SelectedItem="{Binding Settings.SelectedTheme, Mode=TwoWay}"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Connection card -->
+            <TextBlock Text="Connection" FontSize="16" FontWeight="SemiBold" Margin="4,6,0,0"
+                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+
+            <Border CornerRadius="8" BorderThickness="1"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+
+                <StackPanel>
+                    <!-- IPv6 blocking -->
+                    <Grid Padding="16,12" ColumnSpacing="14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="2" VerticalAlignment="Center">
+                            <TextBlock Text="Block IPv6" FontSize="13"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock Text="Drop all IPv6 while connected (prevents leaks)" FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <ToggleSwitch Grid.Column="1" MinWidth="0" OnContent="" OffContent=""
+                                      IsOn="{Binding Settings.Ipv6Block, Mode=TwoWay}"/>
+                    </Grid>
+
+                    <!-- Server port -->
+                    <Grid Padding="16,12" ColumnSpacing="14" BorderThickness="0,1,0,0"
+                          BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="2" VerticalAlignment="Center">
+                            <TextBlock Text="Server Port" FontSize="13"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock Text="Port for the device proxy" FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <NumberBox Grid.Column="1" Value="{Binding Settings.ServerPort, Mode=TwoWay}"
+                                   Minimum="1" Maximum="65535" SpinButtonPlacementMode="Compact"
+                                   SmallChange="1" Width="140"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+            <!-- Tunnel filter card -->
+            <TextBlock Text="Tunnel Filter" FontSize="16" FontWeight="SemiBold" Margin="4,6,0,0"
+                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+
+            <Border CornerRadius="8" BorderThickness="1"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+
+                <StackPanel Padding="16,12" Spacing="10">
+                    <TextBlock Text="Hosts that bypass the tunnel" FontSize="11"
+                               Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                    <Grid ColumnSpacing="8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox PlaceholderText="example.com or 1.2.3.4"
+                                 Text="{Binding Settings.NewFilterHost, Mode=TwoWay}"
+                                 VerticalAlignment="Center"/>
+                        <Button Grid.Column="1" Content="Add"
+                                Command="{Binding Settings.AddFilterHostCommand}" Padding="16,6"
+                                Style="{ThemeResource AccentButtonStyle}" VerticalAlignment="Center"/>
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding Settings.FilterHosts}" MaxHeight="150">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="viewModels:FilterHostViewModel">
+                                <Grid ColumnSpacing="8" Margin="0,2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{x:Bind Host}" FontSize="12" VerticalAlignment="Center"/>
+                                    <Button Grid.Column="1" Padding="6" Command="{x:Bind RemoveCommand}">
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE711;" FontSize="11"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <!-- Update card -->
+            <TextBlock Text="About" FontSize="16" FontWeight="SemiBold" Margin="4,6,0,0"
+                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+
+            <Border CornerRadius="8" BorderThickness="1"
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+                <Grid Padding="16,12" ColumnSpacing="14">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xE777;"
+                              FontSize="16" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
+                    <StackPanel Grid.Column="1" Spacing="2">
+                        <TextBlock Text="Check for updates" FontSize="13" FontWeight="SemiBold"
+                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                        <TextBlock FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                            <Run Text="Version "/>
+                            <Run Text="{Binding Update.AppVersion, Mode=OneWay}"/>
+                        </TextBlock>
+                    </StackPanel>
+                    <Button Grid.Column="2" Padding="14,6"
+                            Command="{Binding Update.CheckCommand}"
+                            Content="Check"/>
+                </Grid>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

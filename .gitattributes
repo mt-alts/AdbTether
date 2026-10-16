@@ -1,0 +1,17 @@
+# Normalize text files on commit; keep binaries intact.
+* text=auto
+
+*.rs    text
+*.cs    text
+*.xaml  text
+*.csproj text
+*.wxs   text
+*.ps1   text
+*.md    text
+
+*.dll   binary
+*.exe   binary
+*.msi   binary
+*.png   binary
+*.ico   binary
+*.pri   binary

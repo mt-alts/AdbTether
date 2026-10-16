@@ -1,0 +1,50 @@
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Fragment>
+    <DirectoryRef Id="SERVICEDIR">
+   <Component Id="SV_C1" Guid="{8E00049D-7992-6D67-FCF1-49B661FDD160}">
+     <File Id="SV_F2" Name="AdbTether_core.dll" Source="$(SVC)\AdbTether_core.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C3" Guid="{A47D5F92-4B0F-D648-B7AA-46F3C711BA39}">
+     <File Id="SV_F4" Name="AdbTetherService.deps.json" Source="$(SVC)\AdbTetherService.deps.json" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C5" Guid="{43E94FC8-357C-648D-0347-36A5ACB83E57}">
+     <File Id="SV_F6" Name="AdbTetherService.dll" Source="$(SVC)\AdbTetherService.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C7" Guid="{66F41094-E9F0-2482-4ACD-28C533A7B8C4}">
+     <File Id="SV_F8" Name="AdbTetherService.exe" Source="$(SVC)\AdbTetherService.exe" KeyPath="yes" />
+     <ServiceInstall Id="SvcInstall" Name="AdbTetherService" DisplayName="AdbTether Service" Description="AdbTether background engine (wintun adapter + adb proxy bridge)." Type="ownProcess" Start="auto" ErrorControl="normal" Arguments="--service" Vital="yes" />
+     <ServiceControl Id="SvcControl" Name="AdbTetherService" Start="install" Stop="both" Remove="uninstall" Wait="yes" />
+   </Component>
+   <Component Id="SV_C9" Guid="{169103ED-B71B-F40D-6A43-ADF16C819F65}">
+     <File Id="SV_F10" Name="AdbTetherService.pdb" Source="$(SVC)\AdbTetherService.pdb" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C11" Guid="{9C46866B-F777-08BA-1C4A-D25F1297DA35}">
+     <File Id="SV_F12" Name="AdbTetherService.runtimeconfig.json" Source="$(SVC)\AdbTetherService.runtimeconfig.json" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C13" Guid="{295C5A20-394B-DAF5-14C2-2DFD40E36A51}">
+     <File Id="SV_F14" Name="System.Diagnostics.EventLog.dll" Source="$(SVC)\System.Diagnostics.EventLog.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C15" Guid="{7336F32C-7F3F-3FE3-B7A6-B731F15B2540}">
+     <File Id="SV_F16" Name="System.Diagnostics.EventLog.Messages.dll" Source="$(SVC)\System.Diagnostics.EventLog.Messages.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C17" Guid="{C368F864-5D70-8F28-E0E0-54796BE7194A}">
+     <File Id="SV_F18" Name="System.ServiceProcess.ServiceController.dll" Source="$(SVC)\System.ServiceProcess.ServiceController.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="SV_C19" Guid="{7A7AB94D-D174-9E8E-74B4-79D7A6E79536}">
+     <File Id="SV_F20" Name="wintun.dll" Source="$(SVC)\wintun.dll" KeyPath="yes" />
+   </Component>
+    </DirectoryRef>
+    <ComponentGroup Id="ServiceFilesGroup">
+      <ComponentRef Id="SV_C1" />
+      <ComponentRef Id="SV_C3" />
+      <ComponentRef Id="SV_C5" />
+      <ComponentRef Id="SV_C7" />
+      <ComponentRef Id="SV_C9" />
+      <ComponentRef Id="SV_C11" />
+      <ComponentRef Id="SV_C13" />
+      <ComponentRef Id="SV_C15" />
+      <ComponentRef Id="SV_C17" />
+      <ComponentRef Id="SV_C19" />
+    </ComponentGroup>
+  </Fragment>
+</Wix>

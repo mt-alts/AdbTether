@@ -1,0 +1,5 @@
+[build]
+# Keep all build output inside the repo (relative to the workspace root).
+# This makes the build independent of any global ~/.cargo/config.toml that
+# redirects `target-dir` to an absolute, machine-specific path.
+target-dir = "target"

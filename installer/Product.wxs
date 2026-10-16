@@ -1,0 +1,50 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="AdbTether" Manufacturer="AdbTether"
+           Version="0.1.0.0" UpgradeCode="{376E0119-4DE5-4D21-A82B-E5EFA9785F8D}"
+           Scope="perMachine" InstallerVersion="500" Compressed="yes">
+
+    <SummaryInformation Description="AdbTether - phone-tethered VPN tunnel for Windows" />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLFOLDER" Name="AdbTether">
+        <Directory Id="APPDIR" Name="app" />
+        <Directory Id="SERVICEDIR" Name="service" />
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="MenuDir" Name="AdbTether">
+        <Component Id="StartMenuShortcut" Guid="{8976E1BF-07AF-422F-B41F-AA217509647F}">
+          <Shortcut Id="SmShortcut" Name="AdbTether"
+                    Target="[APPDIR]AdbTether.exe" WorkingDirectory="APPDIR" />
+          <RemoveFolder Directory="MenuDir" On="uninstall" />
+          <RegistryValue Root="HKCU" Key="Software\AdbTether"
+                         Name="sm" Type="integer" Value="1" KeyPath="yes" />
+        </Component>
+      </Directory>
+    </StandardDirectory>
+
+    <StandardDirectory Id="DesktopFolder">
+      <Component Id="DesktopShortcut" Guid="{D36B929B-A6C9-4AC6-B19B-97EF4CAD3E35}">
+        <Shortcut Id="DeskShortcut" Name="AdbTether"
+                  Target="[APPDIR]AdbTether.exe" WorkingDirectory="APPDIR" />
+        <RegistryValue Root="HKCU" Key="Software\AdbTether"
+                       Name="desk" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </StandardDirectory>
+
+    <!-- Service files come from ServiceFiles.wxs fragment -->
+
+    <Feature Id="Main" Title="AdbTether" Level="1">
+      <ComponentGroupRef Id="AppFilesGroup" />
+      <ComponentGroupRef Id="ServiceFilesGroup" />
+      <ComponentRef Id="StartMenuShortcut" />
+      <ComponentRef Id="DesktopShortcut" />
+    </Feature>
+  </Package>
+</Wix>
+
+
+
