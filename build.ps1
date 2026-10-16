@@ -21,6 +21,10 @@
 .PARAMETER SkipMsi
     Do not rebuild the MSI.
 
+.PARAMETER AllowMissingProxy
+    Build the MSI even when the phone-side ws-proxy is absent from the payload.
+    Only for throwaway/dev MSIs: a release must never ship without it.
+
 .EXAMPLE
     ./build.ps1
     ./build.ps1 -Configuration Debug -SkipMsi
@@ -29,7 +33,8 @@
 param(
     [string]$Configuration = "Release",
     [switch]$SkipAndroid,
-    [switch]$SkipMsi
+    [switch]$SkipMsi,
+    [switch]$AllowMissingProxy
 )
 
 $ErrorActionPreference = "Stop"
@@ -133,6 +138,18 @@ try {
         if ($Configuration -ne "Release") {
             Write-Host "Skipping MSI (only built for Release)." -ForegroundColor Yellow
         } else {
+            # The phone-side proxy is copied into the UI payload only when it
+            # has actually been cross-compiled, so an MSI built on a machine
+            # without it would silently ship a tunnel that cannot work on
+            # device. Refuse to build one unless explicitly allowed.
+            if (-not (Test-Path (Join-Path $uiBin "ws-proxy"))) {
+                if ($AllowMissingProxy) {
+                    Write-Host "[!] ws-proxy missing from '$uiBin'; building anyway (-AllowMissingProxy)." -ForegroundColor Yellow
+                } else {
+                    Fail "ws-proxy is missing from '$uiBin', so the MSI would ship without the phone-side proxy. Build it (drop -SkipAndroid) or pass -AllowMissingProxy for a throwaway MSI."
+                }
+            }
+
             Step "Regenerating MSI file fragments"
             powershell -NoProfile -File "installer\gen_fragments.ps1" -Source $uiBin  -VarName UI  -Group AppFilesGroup    -DirRef APPDIR     -OutFile "installer\AppFiles.wxs"    -Prefix AF_
             powershell -NoProfile -File "installer\gen_fragments.ps1" -Source $svcBin -VarName SVC -Group ServiceFilesGroup -DirRef SERVICEDIR -OutFile "installer\ServiceFiles.wxs" -Prefix SV_ -Service

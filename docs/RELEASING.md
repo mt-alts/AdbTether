@@ -1,6 +1,6 @@
 ﻿# Releasing AdbTether
 
-All commands run from the `adbtether/` directory.
+All commands run from the repository root.
 
 ## 1. Bump the version
 
@@ -30,6 +30,10 @@ Outputs:
 
 `build.ps1` wipes the previous `bin` payload before compiling, so a removed or
 renamed file can never leak from an earlier build into the MSI.
+
+The MSI carries the cross-compiled phone-side `ws-proxy`, so a release must be
+built **without** `-SkipAndroid`. If it is missing from the payload, `build.ps1`
+refuses to build the MSI (pass `-AllowMissingProxy` only for a throwaway one).
 
 ## 3. Smoke test
 
