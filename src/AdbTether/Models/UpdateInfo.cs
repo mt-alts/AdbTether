@@ -6,4 +6,5 @@ public sealed record UpdateInfo(
     string ReleaseUrl,
     string DownloadUrl,
     string FileName,
-    long FileSize);
+    long FileSize,
+    string ReleaseNotes);

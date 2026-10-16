@@ -12,14 +12,38 @@
     <!--
       Width lives on the content, never on the ContentDialog: a MinWidth/MaxWidth
       on the dialog itself also constrains its smoke layer, which drags the whole
-      dialog off center.
+      dialog off center. The upper bound matters because the release notes wrap,
+      and a wrapping TextBlock otherwise reports the full width it was offered
+      and stretches the dialog across the window.
     -->
-    <StackPanel MinWidth="360" Spacing="16">
+    <StackPanel MinWidth="360" MaxWidth="400" Spacing="12">
 
-        <TextBlock
-            Text="A newer version of AdbTether is ready to install."
-            Style="{StaticResource BodyTextBlockStyle}"
-            TextWrapping="Wrap"/>
+        <!-- Intro: the badge gives the prompt a focal point above the details. -->
+        <Grid ColumnSpacing="12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border
+                Width="40"
+                Height="40"
+                CornerRadius="20"
+                VerticalAlignment="Center"
+                Background="{ThemeResource AccentFillColorDefaultBrush}">
+                <FontIcon
+                    Glyph="&#xE777;"
+                    FontSize="18"
+                    Foreground="{ThemeResource TextOnAccentFillColorPrimaryBrush}"/>
+            </Border>
+
+            <TextBlock
+                Grid.Column="1"
+                VerticalAlignment="Center"
+                Text="A newer version of AdbTether is ready to install."
+                Style="{StaticResource BodyTextBlockStyle}"
+                TextWrapping="Wrap"/>
+        </Grid>
 
         <!-- Installed vs available -->
         <Border
@@ -69,6 +93,30 @@
                 </StackPanel>
             </Grid>
         </Border>
+
+        <!-- What's new. Release notes run long, so they scroll in a fixed box
+             instead of stretching the dialog past the window. -->
+        <StackPanel Spacing="6" Visibility="{Binding ReleaseNotesVisibility}">
+            <TextBlock Text="What's new" Style="{StaticResource BodyStrongTextBlockStyle}"/>
+
+            <Border
+                CornerRadius="{ThemeResource OverlayCornerRadius}"
+                BorderThickness="1"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                Padding="12,10">
+                <ScrollViewer MaxHeight="120" VerticalScrollBarVisibility="Auto">
+                    <TextBlock
+                        Text="{Binding ReleaseNotes}"
+                        Style="{StaticResource CaptionTextBlockStyle}"
+                        TextWrapping="Wrap"
+                        LineHeight="20"
+                        LineStackingStrategy="BlockLineHeight"
+                        IsTextSelectionEnabled="True"
+                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                </ScrollViewer>
+            </Border>
+        </StackPanel>
 
         <!-- Offered by the startup prompt only; the Settings check hides it. -->
         <CheckBox

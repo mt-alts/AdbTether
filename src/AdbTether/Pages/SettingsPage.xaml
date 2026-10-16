@@ -146,26 +146,46 @@
             <Border CornerRadius="8" BorderThickness="1"
                     Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                     BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
-                <Grid Padding="16,12" ColumnSpacing="14">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xE777;"
-                              FontSize="16" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
-                    <StackPanel Grid.Column="1" Spacing="2">
-                        <TextBlock Text="Check for updates" FontSize="13" FontWeight="SemiBold"
-                                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
-                        <TextBlock FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
-                            <Run Text="Version "/>
-                            <Run Text="{Binding Update.AppVersion, Mode=OneWay}"/>
-                        </TextBlock>
-                    </StackPanel>
-                    <Button Grid.Column="2" Padding="14,6"
-                            Command="{Binding Update.CheckCommand}"
-                            Content="Check"/>
-                </Grid>
+                <StackPanel>
+                    <Grid Padding="16,12" ColumnSpacing="14">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon Grid.Column="0" FontFamily="Segoe MDL2 Assets" Glyph="&#xE777;"
+                                  FontSize="16" Foreground="{ThemeResource AccentFillColorDefaultBrush}"/>
+                        <StackPanel Grid.Column="1" Spacing="2">
+                            <TextBlock Text="Check for updates" FontSize="13" FontWeight="SemiBold"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock FontSize="11" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                                <Run Text="Version "/>
+                                <Run Text="{Binding Update.AppVersion, Mode=OneWay}"/>
+                            </TextBlock>
+                        </StackPanel>
+                        <Button Grid.Column="2" Padding="14,6"
+                                Command="{Binding Update.CheckCommand}"
+                                Content="Check"/>
+                    </Grid>
+
+                    <!-- The way back in after the update prompt's "don't check at
+                         startup" offer is taken. -->
+                    <Grid Padding="16,12" ColumnSpacing="14" BorderThickness="0,1,0,0"
+                          BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="2" VerticalAlignment="Center">
+                            <TextBlock Text="Check for updates at startup" FontSize="13"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock Text="Look for a new release every time AdbTether opens" FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <ToggleSwitch Grid.Column="1" MinWidth="0" OnContent="" OffContent=""
+                                      IsOn="{Binding Update.CheckAtStartup, Mode=TwoWay}"/>
+                    </Grid>
+                </StackPanel>
             </Border>
 
             <!-- Update check result (e.g. "You're up to date") -->

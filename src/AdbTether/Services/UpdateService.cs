@@ -34,6 +34,7 @@ public sealed class UpdateService : IUpdateService
 
         string tag = root.GetProperty("tag_name").GetString() ?? "";
         string htmlUrl = root.GetProperty("html_url").GetString() ?? "";
+        string releaseNotes = root.TryGetProperty("body", out var body) ? body.GetString() ?? "" : "";
 
         var current = Assembly.GetExecutingAssembly().GetName().Version;
         string latestStr = tag.TrimStart('v');
@@ -62,7 +63,7 @@ public sealed class UpdateService : IUpdateService
             }
         }
 
-        return new UpdateInfo(tag, htmlUrl, downloadUrl, fileName, fileSize);
+        return new UpdateInfo(tag, htmlUrl, downloadUrl, fileName, fileSize, releaseNotes);
     }
 
     /// <summary>Downloads the update MSI to temp and launches it via msiexec.</summary>

@@ -1,5 +1,6 @@
 ﻿using AdbTether.Abstractions;
 using AdbTether.Models;
+using AdbTether.Presentation;
 using Microsoft.UI.Xaml;
 
 namespace AdbTether.ViewModels.Dialogs;
@@ -24,6 +25,7 @@ public sealed class UpdateDialogViewModel : ViewModelBase
         CurrentVersion = AppInfo.CurrentVersion;
         LatestVersion = info.LatestVersion;
         DownloadSizeText = FormatSize(info.FileSize);
+        ReleaseNotes = ReleaseNotesFormatter.Format(info.ReleaseNotes, info.LatestVersion);
 
         _preferences = offerSkipStartup ? preferences : null;
         _skipStartupPrompt = _preferences?.SkipStartupPrompt ?? false;
@@ -41,6 +43,12 @@ public sealed class UpdateDialogViewModel : ViewModelBase
 
     public Visibility DownloadSizeVisibility =>
         string.IsNullOrEmpty(DownloadSizeText) ? Visibility.Collapsed : Visibility.Visible;
+
+    /// <summary>Release notes as plain text; empty when the release has none.</summary>
+    public string ReleaseNotes { get; }
+
+    public Visibility ReleaseNotesVisibility =>
+        string.IsNullOrEmpty(ReleaseNotes) ? Visibility.Collapsed : Visibility.Visible;
 
     /// <summary>Only the startup prompt offers to stop checking on launch.</summary>
     public Visibility SkipOptionVisibility =>

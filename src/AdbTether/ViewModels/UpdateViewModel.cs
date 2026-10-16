@@ -29,6 +29,24 @@ public sealed class UpdateViewModel : ViewModelBase
 
     public AsyncRelayCommand CheckCommand { get; }
 
+    /// <summary>
+    /// Whether the app looks for a release on launch, as the Settings switch
+    /// shows it. It reads and writes the stored preference directly, so the
+    /// switch and the update prompt's own checkbox always agree.
+    /// </summary>
+    public bool CheckAtStartup
+    {
+        get => !_preferences.SkipStartupPrompt;
+        set
+        {
+            if (value == !_preferences.SkipStartupPrompt)
+                return;
+
+            _preferences.SkipStartupPrompt = !value;
+            OnPropertyChanged();
+        }
+    }
+
     /// <summary>Drives the inline result InfoBar on the Settings page.</summary>
     public bool StatusOpen
     {
@@ -82,10 +100,16 @@ public sealed class UpdateViewModel : ViewModelBase
         {
             var info = await _update.CheckForUpdateAsync();
             if (info is not null)
+            {
                 await _dialogs.ShowUpdateAsync(
                     info,
                     progress => _update.DownloadAndInstallAsync(info, progress),
                     offerSkipStartup: !userInitiated);
+
+                // The prompt's checkbox writes the same preference, so re-read it
+                // for the Settings switch the prompt was shown over.
+                OnPropertyChanged(nameof(CheckAtStartup));
+            }
             else if (userInitiated)
                 ShowUpToDate();
         }
