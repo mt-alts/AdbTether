@@ -13,7 +13,11 @@ namespace AdbTether.Services;
 /// </summary>
 public sealed class DialogService : IDialogService
 {
+    private readonly IUpdatePreferences _updatePreferences;
+
     private XamlRoot? _root;
+
+    public DialogService(IUpdatePreferences updatePreferences) => _updatePreferences = updatePreferences;
 
     public void Initialize(XamlRoot xamlRoot) => _root = xamlRoot;
 
@@ -44,12 +48,12 @@ public sealed class DialogService : IDialogService
         return await dialog.ShowAsync() == ContentDialogResult.Primary;
     }
 
-    public async Task ShowUpdateAsync(UpdateInfo info, Func<IProgress<double>, Task> download)
+    public async Task ShowUpdateAsync(UpdateInfo info, Func<IProgress<double>, Task> download, bool offerSkipStartup)
     {
         if (_root is null)
             return;
 
-        var viewModel = new UpdateDialogViewModel(info);
+        var viewModel = new UpdateDialogViewModel(info, _updatePreferences, offerSkipStartup);
         var dialog = new UpdateDialog(viewModel) { XamlRoot = _root };
         bool started = false;
 
@@ -75,15 +79,6 @@ public sealed class DialogService : IDialogService
             dialog.Hide();
         };
 
-        await dialog.ShowAsync();
-    }
-
-    public async Task ShowUpdateErrorAsync(string detail)
-    {
-        if (_root is null)
-            return;
-
-        var dialog = new UpdateErrorDialog(detail) { XamlRoot = _root };
         await dialog.ShowAsync();
     }
 }

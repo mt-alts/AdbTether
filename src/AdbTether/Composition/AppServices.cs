@@ -24,8 +24,9 @@ public sealed class AppServices
         Adb = new AdbService();
         Appearance = new AppearanceService(root);
         Updates = new UpdateService();
+        UpdatePreferences = new UpdatePreferences();
         Clipboard = new ClipboardService();
-        Dialogs = new DialogService();
+        Dialogs = new DialogService(UpdatePreferences);
         Tunnel = new TunnelConnector(Adb);
         Notifications = new NotificationService();
     }
@@ -34,6 +35,7 @@ public sealed class AppServices
     public IAdbService Adb { get; }
     public IAppearanceService Appearance { get; }
     public IUpdateService Updates { get; }
+    public IUpdatePreferences UpdatePreferences { get; }
     public IClipboardService Clipboard { get; }
     public IDialogService Dialogs { get; }
     public TunnelConnector Tunnel { get; }
@@ -46,7 +48,7 @@ public sealed class AppServices
         var traffic = new TrafficViewModel(Core);
         var device = new DeviceViewModel(Adb, Core, Dialogs);
         var settings = new SettingsViewModel(Core, Appearance);
-        var update = new UpdateViewModel(Updates, Dialogs);
+        var update = new UpdateViewModel(Updates, Dialogs, UpdatePreferences);
         var log = new LogViewModel(Core, Clipboard);
 
         return new MainViewModel(Core, Tunnel, Notifications, status, traffic, device, settings, update, log);

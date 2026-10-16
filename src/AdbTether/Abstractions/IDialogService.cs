@@ -27,13 +27,9 @@ public interface IDialogService
 
     /// <summary>
     /// Shows the update prompt and, if accepted, runs <paramref name="download"/>
-    /// while reporting progress to the open dialog.
+    /// while reporting progress to the open dialog. When
+    /// <paramref name="offerSkipStartup"/> is set the prompt also offers to stop
+    /// checking for updates at startup.
     /// </summary>
-    Task ShowUpdateAsync(UpdateInfo info, Func<IProgress<double>, Task> download);
-
-    /// <summary>
-    /// Reports that the update check failed, so a failure is never mistaken for
-    /// "you are up to date". <paramref name="detail"/> is the underlying error.
-    /// </summary>
-    Task ShowUpdateErrorAsync(string detail);
+    Task ShowUpdateAsync(UpdateInfo info, Func<IProgress<double>, Task> download, bool offerSkipStartup);
 }

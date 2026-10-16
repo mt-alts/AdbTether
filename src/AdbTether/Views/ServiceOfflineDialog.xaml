@@ -7,11 +7,14 @@
     PrimaryButtonText="Retry"
     CloseButtonText="Close"
     PrimaryButtonStyle="{ThemeResource AccentButtonStyle}"
-    DefaultButton="Primary"
-    MinWidth="400"
-    MaxWidth="460">
+    DefaultButton="Primary">
 
-    <StackPanel Spacing="12">
+    <!--
+      Width lives on the content, never on the ContentDialog: a MinWidth/MaxWidth
+      on the dialog itself also constrains its smoke layer, which drags the whole
+      dialog off center.
+    -->
+    <StackPanel MinWidth="360" MaxWidth="420" Spacing="12">
 
         <TextBlock Text="AdbTether controls the tunnel through its background service (AdbTetherService) over 127.0.0.1:47012. The service is not reachable, so the tunnel and live status are unavailable."
                    FontSize="14" TextWrapping="Wrap"

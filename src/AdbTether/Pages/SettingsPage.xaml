@@ -168,6 +168,13 @@
                 </Grid>
             </Border>
 
+            <!-- Update check result (e.g. "You're up to date") -->
+            <InfoBar IsOpen="{Binding Update.StatusOpen, Mode=TwoWay}"
+                     Severity="{Binding Update.StatusSeverity}"
+                     Title="{Binding Update.StatusTitle}"
+                     Message="{Binding Update.StatusMessage}"
+                     IsClosable="True"/>
+
         </StackPanel>
     </ScrollViewer>
 </Page>
