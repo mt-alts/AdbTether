@@ -30,4 +30,10 @@ public interface IDialogService
     /// while reporting progress to the open dialog.
     /// </summary>
     Task ShowUpdateAsync(UpdateInfo info, Func<IProgress<double>, Task> download);
+
+    /// <summary>
+    /// Reports that the update check failed, so a failure is never mistaken for
+    /// "you are up to date". <paramref name="detail"/> is the underlying error.
+    /// </summary>
+    Task ShowUpdateErrorAsync(string detail);
 }

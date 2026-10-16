@@ -60,7 +60,7 @@ public sealed partial class MainWindow : Window
             RootGrid.DispatcherQueue.TryEnqueue(async () =>
             {
                 await EnsureServiceAvailableAsync();
-                _ = ViewModel.Update.CheckAsync();
+                _ = ViewModel.Update.CheckAsync(reportErrors: false);
             });
         };
 

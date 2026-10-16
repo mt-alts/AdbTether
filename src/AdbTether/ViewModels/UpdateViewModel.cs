@@ -14,15 +14,20 @@ public sealed class UpdateViewModel : ViewModelBase
     {
         _update = update;
         _dialogs = dialogs;
-        CheckCommand = new AsyncRelayCommand(CheckAsync);
+        CheckCommand = new AsyncRelayCommand(() => CheckAsync());
     }
 
     public string AppVersion => AppInfo.CurrentVersion;
 
     public AsyncRelayCommand CheckCommand { get; }
 
-    /// <summary>Checks for an update; if one exists, prompts to download it.</summary>
-    public async Task CheckAsync()
+    /// <summary>
+    /// Checks for an update; if one exists, prompts to download it. A failed
+    /// check is reported to the user so it is never mistaken for "up to date";
+    /// the startup check passes <paramref name="reportErrors"/> as false to stay
+    /// silent when the machine is simply offline.
+    /// </summary>
+    public async Task CheckAsync(bool reportErrors = true)
     {
         if (_isChecking)
             return;
@@ -34,9 +39,12 @@ public sealed class UpdateViewModel : ViewModelBase
             if (info is not null)
                 await _dialogs.ShowUpdateAsync(info, progress => _update.DownloadAndInstallAsync(info, progress));
         }
-        catch
+        catch (Exception ex)
         {
-            // Update check is non-critical; ignore failures silently.
+            // Non-critical, but swallowing this made a broken update path look
+            // identical to "up to date", so surface it for user-initiated checks.
+            if (reportErrors)
+                await _dialogs.ShowUpdateErrorAsync(ex.Message);
         }
         finally
         {

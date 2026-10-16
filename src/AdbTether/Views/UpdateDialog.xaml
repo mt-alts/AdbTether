@@ -54,6 +54,6 @@
         <!-- Error -->
         <TextBlock Text="{Binding Error}" Visibility="{Binding ErrorVisibility}"
                    FontSize="12" TextWrapping="Wrap"
-                   Foreground="{ThemeResource TextFillColorCriticalBrush}"/>
+                   Foreground="{ThemeResource SystemFillColorCriticalBrush}"/>
     </StackPanel>
 </views:ThemedContentDialog>

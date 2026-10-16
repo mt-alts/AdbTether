@@ -219,6 +219,9 @@
     <Component Id="AF_C141" Guid="{5CD22C90-CDAE-027A-B79F-BDC8E41ABDF6}">
       <File Id="AF_F142" Name="UpdateDialog.xbf" Source="$(UI)\Views\UpdateDialog.xbf" KeyPath="yes" />
     </Component>
+    <Component Id="AF_C143" Guid="{17F2B5DE-8A75-F74F-F0F2-C58A47133D33}">
+      <File Id="AF_F144" Name="UpdateErrorDialog.xbf" Source="$(UI)\Views\UpdateErrorDialog.xbf" KeyPath="yes" />
+    </Component>
       </Directory>
     </DirectoryRef>
     <ComponentGroup Id="AppFilesGroup">
@@ -287,6 +290,7 @@
       <ComponentRef Id="AF_C136" />
       <ComponentRef Id="AF_C139" />
       <ComponentRef Id="AF_C141" />
+      <ComponentRef Id="AF_C143" />
     </ComponentGroup>
   </Fragment>
 </Wix>

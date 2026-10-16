@@ -77,4 +77,13 @@ public sealed class DialogService : IDialogService
 
         await dialog.ShowAsync();
     }
+
+    public async Task ShowUpdateErrorAsync(string detail)
+    {
+        if (_root is null)
+            return;
+
+        var dialog = new UpdateErrorDialog(detail) { XamlRoot = _root };
+        await dialog.ShowAsync();
+    }
 }
