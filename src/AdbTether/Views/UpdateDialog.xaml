@@ -16,7 +16,7 @@
       and a wrapping TextBlock otherwise reports the full width it was offered
       and stretches the dialog across the window.
     -->
-    <StackPanel MinWidth="360" MaxWidth="400" Spacing="12">
+    <StackPanel MinWidth="360" MaxWidth="400" Spacing="10">
 
         <!-- Intro: the badge gives the prompt a focal point above the details. -->
         <Grid ColumnSpacing="12">
@@ -51,7 +51,7 @@
             BorderThickness="1"
             Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-            Padding="16,12">
+            Padding="16,10">
             <Grid ColumnSpacing="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -104,13 +104,13 @@
                 BorderThickness="1"
                 Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                Padding="12,10">
-                <ScrollViewer MaxHeight="120" VerticalScrollBarVisibility="Auto">
+                Padding="12,8">
+                <ScrollViewer MaxHeight="114" VerticalScrollBarVisibility="Auto">
                     <TextBlock
                         Text="{Binding ReleaseNotes}"
                         Style="{StaticResource CaptionTextBlockStyle}"
                         TextWrapping="Wrap"
-                        LineHeight="20"
+                        LineHeight="19"
                         LineStackingStrategy="BlockLineHeight"
                         IsTextSelectionEnabled="True"
                         Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
