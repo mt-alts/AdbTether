@@ -1,5 +1,7 @@
 ﻿# AdbTether
 
+![AdbTether icon](docs/adbtether.png)
+
 **Share an Android phone's internet connection with a Windows PC.**
 
 AdbTether routes the PC's full L3 traffic (TCP + UDP) through an Android phone over
@@ -7,6 +9,8 @@ a WebSocket tunnel — no root required on the phone, and no proxy app needed on
 the PC. It installs a Wintun virtual adapter and drives a user-space TCP/IP
 stack; a small Rust proxy (`ws-proxy`) runs on the phone side and is reached
 through `adb forward`.
+
+![AdbTether main window](docs/screenshot.png)
 
 ## Goals
 
