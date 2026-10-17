@@ -193,7 +193,7 @@ src\AdbTetherService\bin\Debug\net10.0-windows\win-x64\AdbTetherService.exe
 ## Privacy
 
 AdbTether has no telemetry, no analytics and no accounts. See
-[`docs/PRIVACY.md`](docs/PRIVACY.md) for every file it writes and the one
+[`PRIVACY.md`](PRIVACY.md) for every file it writes and the one
 network request it makes.
 
 ## License
