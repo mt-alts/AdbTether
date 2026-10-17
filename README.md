@@ -8,7 +8,7 @@ the PC. It installs a Wintun virtual adapter and drives a user-space TCP/IP
 stack; a small Rust proxy (`ws-proxy`) runs on the phone side and is reached
 through `adb forward`.
 
-![AdbTether main window](docs/screenshot.png)
+<img src="docs/screenshot.png" alt="AdbTether main window" width="520">
 
 ## Goals
 
