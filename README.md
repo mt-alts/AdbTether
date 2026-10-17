@@ -1,6 +1,4 @@
-﻿# AdbTether
-
-![AdbTether icon](docs/adbtether.png)
+﻿# ![AdbTether icon](docs/adbtether-48.png) AdbTether
 
 **Share an Android phone's internet connection with a Windows PC.**
 
