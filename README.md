@@ -1,4 +1,4 @@
-﻿# ![AdbTether icon](docs/adbtether-48.png) AdbTether
+﻿# <img src="docs/adbtether-48.png" alt="AdbTether icon" width="48" height="48" align="absmiddle"> AdbTether
 
 **Share an Android phone's internet connection with a Windows PC.**
 
