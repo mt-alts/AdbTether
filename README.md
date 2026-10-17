@@ -190,6 +190,12 @@ src\AdbTetherService\bin\Debug\net10.0-windows\win-x64\AdbTetherService.exe
 | Wintun adapter | `AdbTether` |
 | MSI UpgradeCode | `{376E0119-4DE5-4D21-A82B-E5EFA9785F8D}` (stable across releases) |
 
+## Privacy
+
+AdbTether has no telemetry, no analytics and no accounts. See
+[`docs/PRIVACY.md`](docs/PRIVACY.md) for every file it writes and the one
+network request it makes.
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT - see [LICENSE](LICENSE).
