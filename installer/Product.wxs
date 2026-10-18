@@ -1,6 +1,6 @@
 ﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Package Name="AdbTether" Manufacturer="AdbTether"
-           Version="0.1.2.0" UpgradeCode="{376E0119-4DE5-4D21-A82B-E5EFA9785F8D}"
+           Version="0.1.3.0" UpgradeCode="{376E0119-4DE5-4D21-A82B-E5EFA9785F8D}"
            Scope="perMachine" InstallerVersion="500" Compressed="yes">
 
     <SummaryInformation Description="AdbTether - phone-tethered VPN tunnel for Windows" />
