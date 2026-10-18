@@ -3,6 +3,7 @@ using AdvancedSharpAdbClient.Models;
 using System.Diagnostics;
 using System.IO;
 using AdbTether.Abstractions;
+using AdbTether.Models;
 
 namespace AdbTether.Services;
 
@@ -25,24 +26,42 @@ public sealed class AdbService : IAdbService
 
     private static readonly string AdbPath = FindAdb();
     private readonly IAdbClient _client = AdbClient.Instance;
+    private readonly IAdbServer _server = AdbServer.Instance;
+    private readonly SemaphoreSlim _serverGate = new(1, 1);
+    private readonly Dictionary<string, string> _names = new(StringComparer.Ordinal);
 
-    public async Task<IReadOnlyList<string>> GetDevicesAsync(CancellationToken ct = default)
+    public async Task<IReadOnlyList<AdbDevice>> GetDevicesAsync(CancellationToken ct = default)
     {
+        await EnsureServerAsync(ct);
         var devices = await _client.GetDevicesAsync(ct);
-        return devices
+        var online = devices
             .Where(d => d.State == DeviceState.Online)
             .Select(d => d.Serial)
             .ToArray();
+
+        var result = new List<AdbDevice>(online.Length);
+        foreach (string serial in online)
+        {
+            if (!_names.TryGetValue(serial, out string? name))
+            {
+                name = await ResolveNameAsync(serial, ct);
+                _names[serial] = name;
+            }
+            result.Add(new AdbDevice(serial, name));
+        }
+        return result;
     }
 
     public async Task<string> ConnectAsync(string host, int port, CancellationToken ct = default)
     {
+        await EnsureServerAsync(ct);
         var result = await _client.ConnectAsync(host, port, ct);
         return result?.ToString() ?? "";
     }
 
     public async Task<string> PairAsync(string host, int port, string code, CancellationToken ct = default)
     {
+        await EnsureServerAsync(ct);
         var result = await _client.PairAsync(host, port, code, ct);
         return result?.ToString() ?? "";
     }
@@ -94,8 +113,68 @@ public sealed class AdbService : IAdbService
 
     private async Task<DeviceData?> FindDeviceAsync(string serial, CancellationToken ct)
     {
+        await EnsureServerAsync(ct);
         var devices = await _client.GetDevicesAsync(ct);
         return devices.FirstOrDefault(d => d.Serial == serial && d.State == DeviceState.Online);
+    }
+
+    /// <summary>
+    /// The adb client only talks to a server that is already listening, so on a
+    /// PC where adb.exe is installed but not running every scan comes back empty
+    /// and refreshing does not help. Bring the server up before the first call.
+    /// </summary>
+    private async Task EnsureServerAsync(CancellationToken ct)
+    {
+        if ((await _server.GetStatusAsync(ct)).IsRunning)
+            return;
+
+        // One start at a time: the shell refresh and a connect can overlap.
+        await _serverGate.WaitAsync(ct);
+        try
+        {
+            if ((await _server.GetStatusAsync(ct)).IsRunning)
+                return;
+
+            await _server.StartServerAsync(AdbPath, restartServerIfNewer: false, ct);
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            throw new InvalidOperationException(
+                $"adb server could not be started from '{AdbPath}'. Install Android " +
+                $"platform-tools or put adb.exe on PATH. ({ex.Message})", ex);
+        }
+        finally
+        {
+            _serverGate.Release();
+        }
+    }
+
+    /// <summary>
+    /// A serial means nothing to a human, so ask the phone what it calls itself.
+    /// ro.product.marketname ("Xiaomi 13T") is the name the vendor sells it
+    /// under; older devices only answer manufacturer + model ("Samsung
+    /// SM-S911B"), and a phone that answers nothing keeps its serial. One call
+    /// per device, cached for the session.
+    /// </summary>
+    private static async Task<string> ResolveNameAsync(string serial, CancellationToken ct)
+    {
+        string output = await RunCliAsync(
+            $"-s {serial} shell \"getprop ro.product.marketname; " +
+            "getprop ro.product.vendor.marketname; " +
+            "getprop ro.product.manufacturer; getprop ro.product.model\"", ct);
+
+        if (output.StartsWith("exit ", StringComparison.Ordinal))
+            return serial;
+
+        string[] lines = output.Replace("\r", "").Split('\n');
+        string At(int index) => index < lines.Length ? lines[index].Trim() : "";
+
+        string market = At(0).Length > 0 ? At(0) : At(1);
+        if (market.Length > 0)
+            return market;
+
+        string fallback = string.Join(' ', new[] { At(2), At(3) }.Where(p => p.Length > 0));
+        return fallback.Length > 0 ? fallback : serial;
     }
 
     private static async Task<string> RunCliAsync(string arguments, CancellationToken ct = default)

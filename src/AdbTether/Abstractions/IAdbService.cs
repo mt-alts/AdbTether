@@ -1,9 +1,11 @@
-﻿namespace AdbTether.Abstractions;
+﻿using AdbTether.Models;
+
+namespace AdbTether.Abstractions;
 
 /// <summary>adb interaction used to reach the Android device (AdvancedSharpAdbClient).</summary>
 public interface IAdbService
 {
-    Task<IReadOnlyList<string>> GetDevicesAsync(CancellationToken ct = default);
+    Task<IReadOnlyList<AdbDevice>> GetDevicesAsync(CancellationToken ct = default);
 
     Task<string> ConnectAsync(string host, int port, CancellationToken ct = default);
 

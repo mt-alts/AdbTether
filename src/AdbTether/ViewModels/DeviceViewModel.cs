@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using AdbTether.Abstractions;
+using AdbTether.Models;
 
 namespace AdbTether.ViewModels;
 
@@ -13,7 +14,7 @@ public sealed class DeviceViewModel : ViewModelBase
     private readonly ICoreService _core;
     private readonly IDialogService _dialogs;
 
-    private string? _selected;
+    private AdbDevice? _selected;
     private string _message = "";
 
     public DeviceViewModel(IAdbService adb, ICoreService core, IDialogService dialogs)
@@ -27,19 +28,19 @@ public sealed class DeviceViewModel : ViewModelBase
         AddPairCommand = new AsyncRelayCommand(AddViaPairAsync);
     }
 
-    public ObservableCollection<string> Items { get; } = new();
+    public ObservableCollection<AdbDevice> Items { get; } = new();
 
     public AsyncRelayCommand RefreshCommand { get; }
     public AsyncRelayCommand AddConnectCommand { get; }
     public AsyncRelayCommand AddPairCommand { get; }
 
-    public string? Selected
+    public AdbDevice? Selected
     {
         get => _selected;
         set
         {
             if (SetProperty(ref _selected, value) && value is not null)
-                _core.SetDevice(value);
+                _core.SetDevice(value.Serial);
         }
     }
 
@@ -56,14 +57,20 @@ public sealed class DeviceViewModel : ViewModelBase
         {
             var devices = await _adb.GetDevicesAsync();
             Items.Clear();
-            foreach (string d in devices)
+            foreach (AdbDevice d in devices)
                 Items.Add(d);
             if (Items.Count > 0)
                 Selected = Items[0];
+
+            // Clear a stale failure line, but leave connect/pair results alone.
+            if (Message.StartsWith("Device scan failed", StringComparison.Ordinal))
+                Message = "";
         }
-        catch
+        catch (Exception ex)
         {
+            // Swallowing this used to leave an empty list and no reason for it.
             Items.Clear();
+            Message = $"Device scan failed: {ex.Message}";
         }
     }
 

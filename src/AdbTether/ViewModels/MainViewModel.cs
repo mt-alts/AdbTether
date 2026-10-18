@@ -113,7 +113,7 @@ public sealed class MainViewModel : ViewModelBase, IDisposable
                 if (_wasTunnelActive && !_lossNotified)
                 {
                     _lossNotified = true;
-                    string device = string.IsNullOrEmpty(Device.Selected) ? "the device" : Device.Selected;
+                    string device = Device.Selected?.Name ?? "the device";
                     _notifications.Notify(
                         "AdbTether - connection lost",
                         $"ws-proxy on {device} stopped responding. The PC stays on the tunnel without internet until you disconnect.");
@@ -141,7 +141,7 @@ public sealed class MainViewModel : ViewModelBase, IDisposable
 
     private async Task ConnectAsync()
     {
-        string device = Device.Selected ?? "";
+        string device = Device.Selected?.Serial ?? "";
         int port = Settings.ServerPort;
 
         // Disconnect: suspend the tunnel but KEEP the wintun adapter and the
@@ -197,11 +197,12 @@ public sealed class MainViewModel : ViewModelBase, IDisposable
         Log.Dispose();
 
         // Kill ws-proxy on the device before destroying the tunnel.
-        if (!string.IsNullOrEmpty(Device.Selected))
+        string serial = Device.Selected?.Serial ?? "";
+        if (serial.Length > 0)
         {
             try
             {
-                _connector.KillProxyAsync(Device.Selected).Wait(TimeSpan.FromSeconds(3));
+                _connector.KillProxyAsync(serial).Wait(TimeSpan.FromSeconds(3));
             }
             catch { /* best effort */ }
         }

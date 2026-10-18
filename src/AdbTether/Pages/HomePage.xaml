@@ -45,6 +45,8 @@
                         </Grid.ColumnDefinitions>
                         <ComboBox ItemsSource="{Binding Device.Items}"
                                   SelectedItem="{Binding Device.Selected, Mode=TwoWay}"
+                                  DisplayMemberPath="Name"
+                                  ToolTipService.ToolTip="{Binding Device.Selected.Serial}"
                                   HorizontalAlignment="Stretch" MinWidth="0"/>
 
                         <!-- Add Device: TCP/IP connect or Pair -->
