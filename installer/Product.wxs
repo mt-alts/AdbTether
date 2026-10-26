@@ -15,6 +15,9 @@
       </DirectorySearch>
     </Property>
 
+    <Launch Condition="Installed OR (VersionNT64 AND WindowsBuild >= 17763)"
+            Message="AdbTether requires 64-bit Windows 10 version 1809 (build 17763) or newer, or Windows 11." />
+
     <Launch Condition="Installed OR DOTNET_RUNTIME"
             Message="AdbTether requires the .NET 10 Runtime (x64). Install it from https://dotnet.microsoft.com/download/dotnet/10.0 and run setup again." />
 

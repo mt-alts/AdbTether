@@ -26,10 +26,11 @@ Windows App SDK runtimes.
 `adb.exe` (Android SDK Platform-Tools 36.0.2) ships in the app folder, so a
 separate Platform-Tools install is not required.
 
-Install the Windows App Runtime before launching AdbTether. Setup checks for the
-.NET 10 Runtime and stops with a download link if it is missing, so a fresh
-install cannot leave the service failing with **error 1053**; the UI checks the
-Windows App Runtime at startup and does not launch without it.
+Setup checks for 64-bit Windows 10 version 1809 (build 17763) or newer and
+for the .NET 10 Runtime, and stops with a message if either is missing, so a
+fresh install cannot leave the service failing with **error 1053**. Install the
+Windows App Runtime before launching AdbTether; the UI checks it at startup and
+does not launch without it.
 
 ## Goals
 
