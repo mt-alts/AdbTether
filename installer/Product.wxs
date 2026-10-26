@@ -7,6 +7,17 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <MediaTemplate EmbedCab="yes" />
 
+    <!-- AdbTether targets .NET 10. Refuse a fresh install without the x64
+         runtime instead of leaving AdbTetherService failing with error 1053. -->
+    <Property Id="DOTNET_RUNTIME">
+      <DirectorySearch Id="DotNetDirectory" Path="[ProgramFiles64Folder]dotnet">
+        <FileSearch Id="DotNetHost" Name="dotnet.exe" MinVersion="10.0.0.0" />
+      </DirectorySearch>
+    </Property>
+
+    <Launch Condition="Installed OR DOTNET_RUNTIME"
+            Message="AdbTether requires the .NET 10 Runtime (x64). Install it from https://dotnet.microsoft.com/download/dotnet/10.0 and run setup again." />
+
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="INSTALLFOLDER" Name="AdbTether">
         <Directory Id="APPDIR" Name="app" />
