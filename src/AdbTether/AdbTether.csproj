@@ -42,4 +42,12 @@
     <None Include="..\..\target\aarch64-linux-android\release\ws-proxy" Link="ws-proxy" CopyToOutputDirectory="PreserveNewest" Condition="Exists('..\..\target\aarch64-linux-android\release\ws-proxy')" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- adb ships with the app so users do not need Android platform-tools -->
+    <None Include="..\..\vendor\platform-tools\adb.exe" Link="adb.exe" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\vendor\platform-tools\AdbWinApi.dll" Link="AdbWinApi.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\vendor\platform-tools\AdbWinUsbApi.dll" Link="AdbWinUsbApi.dll" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="..\..\vendor\platform-tools\NOTICE.txt" Link="NOTICE.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

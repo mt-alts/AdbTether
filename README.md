@@ -20,11 +20,11 @@ Windows App SDK runtimes.
 - Windows 10 1809 or newer, or Windows 11 (x64)
 - [.NET 10 Runtime (x64)](https://dotnet.microsoft.com/download/dotnet/10.0)
 - [Windows App Runtime 1.8 (x64)](https://learn.microsoft.com/windows/apps/windows-app-sdk/downloads)
-- [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) -
-  AdbTether does not bundle `adb.exe`; it must be on `PATH`, next to
-  `AdbTether.exe`, or in a standard SDK location
 - An Android device with USB debugging or wireless debugging enabled, authorised
   for ADB
+
+`adb.exe` (Android SDK Platform-Tools 36.0.2) ships in the app folder, so a
+separate Platform-Tools install is not required.
 
 Install the runtimes before launching AdbTether. If the .NET 10 Runtime is
 missing when the MSI runs, the service fails to start with **error 1053** and

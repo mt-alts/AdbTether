@@ -1,223 +1,235 @@
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
   <Fragment>
     <DirectoryRef Id="APPDIR">
-   <Component Id="AF_C1" Guid="{A28BDDCE-84DB-8FF6-5E05-CFC9DF4AA48D}">
-     <File Id="AF_F2" Name="AdbConnectDialog.xbf" Source="$(UI)\AdbConnectDialog.xbf" KeyPath="yes" />
+   <Component Id="AF_C1" Guid="{B8F90BDB-CDB0-2055-97D9-62D2DB45A097}">
+     <File Id="AF_F2" Name="adb.exe" Source="$(UI)\adb.exe" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C3" Guid="{F2E5AED6-458D-08DE-75B5-F340E0260168}">
-     <File Id="AF_F4" Name="AdbPairDialog.xbf" Source="$(UI)\AdbPairDialog.xbf" KeyPath="yes" />
+   <Component Id="AF_C3" Guid="{A28BDDCE-84DB-8FF6-5E05-CFC9DF4AA48D}">
+     <File Id="AF_F4" Name="AdbConnectDialog.xbf" Source="$(UI)\AdbConnectDialog.xbf" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C5" Guid="{138F09A4-C40B-F4C8-D6E8-28795C062D95}">
-     <File Id="AF_F6" Name="AdbTether.deps.json" Source="$(UI)\AdbTether.deps.json" KeyPath="yes" />
+   <Component Id="AF_C5" Guid="{F2E5AED6-458D-08DE-75B5-F340E0260168}">
+     <File Id="AF_F6" Name="AdbPairDialog.xbf" Source="$(UI)\AdbPairDialog.xbf" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C7" Guid="{E7F2D469-8F38-F03B-C8B2-7A7003C4450F}">
-     <File Id="AF_F8" Name="AdbTether.dll" Source="$(UI)\AdbTether.dll" KeyPath="yes" />
+   <Component Id="AF_C7" Guid="{138F09A4-C40B-F4C8-D6E8-28795C062D95}">
+     <File Id="AF_F8" Name="AdbTether.deps.json" Source="$(UI)\AdbTether.deps.json" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C9" Guid="{7B7A3CF5-5515-48C6-EBA1-86A420ACC4DE}">
-     <File Id="AF_F10" Name="AdbTether.exe" Source="$(UI)\AdbTether.exe" KeyPath="yes" />
+   <Component Id="AF_C9" Guid="{E7F2D469-8F38-F03B-C8B2-7A7003C4450F}">
+     <File Id="AF_F10" Name="AdbTether.dll" Source="$(UI)\AdbTether.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C11" Guid="{8ED20E9D-712F-2FF3-5EAB-2574BA12C57C}">
-     <File Id="AF_F12" Name="adbtether.ico" Source="$(UI)\adbtether.ico" KeyPath="yes" />
+   <Component Id="AF_C11" Guid="{7B7A3CF5-5515-48C6-EBA1-86A420ACC4DE}">
+     <File Id="AF_F12" Name="AdbTether.exe" Source="$(UI)\AdbTether.exe" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C13" Guid="{BC968CE0-EC7F-C13B-FC5E-896537749A44}">
-     <File Id="AF_F14" Name="AdbTether.pdb" Source="$(UI)\AdbTether.pdb" KeyPath="yes" />
+   <Component Id="AF_C13" Guid="{8ED20E9D-712F-2FF3-5EAB-2574BA12C57C}">
+     <File Id="AF_F14" Name="adbtether.ico" Source="$(UI)\adbtether.ico" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C15" Guid="{9E79138C-6077-30E2-0474-D1062860FCB5}">
-     <File Id="AF_F16" Name="AdbTether.pri" Source="$(UI)\AdbTether.pri" KeyPath="yes" />
+   <Component Id="AF_C15" Guid="{BC968CE0-EC7F-C13B-FC5E-896537749A44}">
+     <File Id="AF_F16" Name="AdbTether.pdb" Source="$(UI)\AdbTether.pdb" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C17" Guid="{D6174668-2111-42C0-EDEF-C5B6B8534C66}">
-     <File Id="AF_F18" Name="AdbTether.runtimeconfig.json" Source="$(UI)\AdbTether.runtimeconfig.json" KeyPath="yes" />
+   <Component Id="AF_C17" Guid="{9E79138C-6077-30E2-0474-D1062860FCB5}">
+     <File Id="AF_F18" Name="AdbTether.pri" Source="$(UI)\AdbTether.pri" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C19" Guid="{B5AC937A-82DF-6609-C7F3-5DEA18FDA814}">
-     <File Id="AF_F20" Name="AdbTether_core.dll" Source="$(UI)\AdbTether_core.dll" KeyPath="yes" />
+   <Component Id="AF_C19" Guid="{D6174668-2111-42C0-EDEF-C5B6B8534C66}">
+     <File Id="AF_F20" Name="AdbTether.runtimeconfig.json" Source="$(UI)\AdbTether.runtimeconfig.json" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C21" Guid="{1075C591-45FF-C0ED-6534-8421B9B5F915}">
-     <File Id="AF_F22" Name="AdvancedSharpAdbClient.dll" Source="$(UI)\AdvancedSharpAdbClient.dll" KeyPath="yes" />
+   <Component Id="AF_C21" Guid="{B5AC937A-82DF-6609-C7F3-5DEA18FDA814}">
+     <File Id="AF_F22" Name="AdbTether_core.dll" Source="$(UI)\AdbTether_core.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C23" Guid="{7979166A-9A66-7FEC-B113-47E1D6436631}">
-     <File Id="AF_F24" Name="App.xbf" Source="$(UI)\App.xbf" KeyPath="yes" />
+   <Component Id="AF_C23" Guid="{B863DD9B-461D-DFA4-2FF9-F56F620C0A7F}">
+     <File Id="AF_F24" Name="AdbWinApi.dll" Source="$(UI)\AdbWinApi.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C25" Guid="{31047292-3296-7803-6D27-2C0A50F6D732}">
-     <File Id="AF_F26" Name="MainWindow.xbf" Source="$(UI)\MainWindow.xbf" KeyPath="yes" />
+   <Component Id="AF_C25" Guid="{9B1C150F-C57B-5A6B-B5A8-5ECE35D51794}">
+     <File Id="AF_F26" Name="AdbWinUsbApi.dll" Source="$(UI)\AdbWinUsbApi.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C27" Guid="{6FA16F5A-A786-EFF8-CA67-E11727F3731A}">
-     <File Id="AF_F28" Name="Microsoft.Graphics.Imaging.Projection.dll" Source="$(UI)\Microsoft.Graphics.Imaging.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C27" Guid="{1075C591-45FF-C0ED-6534-8421B9B5F915}">
+     <File Id="AF_F28" Name="AdvancedSharpAdbClient.dll" Source="$(UI)\AdvancedSharpAdbClient.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C29" Guid="{775CD4AB-35BF-A24F-8B23-D7436516A2D2}">
-     <File Id="AF_F30" Name="Microsoft.InteractiveExperiences.Projection.dll" Source="$(UI)\Microsoft.InteractiveExperiences.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C29" Guid="{7979166A-9A66-7FEC-B113-47E1D6436631}">
+     <File Id="AF_F30" Name="App.xbf" Source="$(UI)\App.xbf" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C31" Guid="{B24C2539-26A5-3B3A-E1CA-5E9054BA5E54}">
-     <File Id="AF_F32" Name="Microsoft.Security.Authentication.OAuth.Projection.dll" Source="$(UI)\Microsoft.Security.Authentication.OAuth.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C31" Guid="{31047292-3296-7803-6D27-2C0A50F6D732}">
+     <File Id="AF_F32" Name="MainWindow.xbf" Source="$(UI)\MainWindow.xbf" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C33" Guid="{246BD857-EA8C-6897-5E9A-F81C10D6540B}">
-     <File Id="AF_F34" Name="Microsoft.Web.WebView2.Core.dll" Source="$(UI)\Microsoft.Web.WebView2.Core.dll" KeyPath="yes" />
+   <Component Id="AF_C33" Guid="{6FA16F5A-A786-EFF8-CA67-E11727F3731A}">
+     <File Id="AF_F34" Name="Microsoft.Graphics.Imaging.Projection.dll" Source="$(UI)\Microsoft.Graphics.Imaging.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C35" Guid="{A5B84CF6-2EDD-12E9-C597-ABF40DD0EDB4}">
-     <File Id="AF_F36" Name="Microsoft.Web.WebView2.Core.Projection.dll" Source="$(UI)\Microsoft.Web.WebView2.Core.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C35" Guid="{775CD4AB-35BF-A24F-8B23-D7436516A2D2}">
+     <File Id="AF_F36" Name="Microsoft.InteractiveExperiences.Projection.dll" Source="$(UI)\Microsoft.InteractiveExperiences.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C37" Guid="{AA368167-5D1D-8B4A-E29C-55C35C5A8DAE}">
-     <File Id="AF_F38" Name="Microsoft.Windows.AI.ContentSafety.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.ContentSafety.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C37" Guid="{B24C2539-26A5-3B3A-E1CA-5E9054BA5E54}">
+     <File Id="AF_F38" Name="Microsoft.Security.Authentication.OAuth.Projection.dll" Source="$(UI)\Microsoft.Security.Authentication.OAuth.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C39" Guid="{0198A42D-2DA6-8B46-AAFD-A7B9025923F7}">
-     <File Id="AF_F40" Name="Microsoft.Windows.AI.Foundation.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Foundation.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C39" Guid="{246BD857-EA8C-6897-5E9A-F81C10D6540B}">
+     <File Id="AF_F40" Name="Microsoft.Web.WebView2.Core.dll" Source="$(UI)\Microsoft.Web.WebView2.Core.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C41" Guid="{54B252F8-F630-9026-2DB2-BEA76647DDB6}">
-     <File Id="AF_F42" Name="Microsoft.Windows.AI.Imaging.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Imaging.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C41" Guid="{A5B84CF6-2EDD-12E9-C597-ABF40DD0EDB4}">
+     <File Id="AF_F42" Name="Microsoft.Web.WebView2.Core.Projection.dll" Source="$(UI)\Microsoft.Web.WebView2.Core.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C43" Guid="{0585626C-E24D-CA8F-B18C-47CBFB72D4DD}">
-     <File Id="AF_F44" Name="Microsoft.Windows.AI.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C43" Guid="{AA368167-5D1D-8B4A-E29C-55C35C5A8DAE}">
+     <File Id="AF_F44" Name="Microsoft.Windows.AI.ContentSafety.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.ContentSafety.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C45" Guid="{8325FAE7-C7C1-9E34-5153-8F9655E35052}">
-     <File Id="AF_F46" Name="Microsoft.Windows.AI.Text.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Text.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C45" Guid="{0198A42D-2DA6-8B46-AAFD-A7B9025923F7}">
+     <File Id="AF_F46" Name="Microsoft.Windows.AI.Foundation.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Foundation.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C47" Guid="{AFE0EF54-4584-466C-B66A-A4AA6B0D74E8}">
-     <File Id="AF_F48" Name="Microsoft.Windows.ApplicationModel.Background.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.Background.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C47" Guid="{54B252F8-F630-9026-2DB2-BEA76647DDB6}">
+     <File Id="AF_F48" Name="Microsoft.Windows.AI.Imaging.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Imaging.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C49" Guid="{258832C8-0240-D706-8C4F-3B3FF48A1649}">
-     <File Id="AF_F50" Name="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C49" Guid="{0585626C-E24D-CA8F-B18C-47CBFB72D4DD}">
+     <File Id="AF_F50" Name="Microsoft.Windows.AI.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C51" Guid="{3654AB51-FFF6-8D50-6756-EE82349095C6}">
-     <File Id="AF_F52" Name="Microsoft.Windows.ApplicationModel.Resources.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.Resources.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C51" Guid="{8325FAE7-C7C1-9E34-5153-8F9655E35052}">
+     <File Id="AF_F52" Name="Microsoft.Windows.AI.Text.Projection.dll" Source="$(UI)\Microsoft.Windows.AI.Text.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C53" Guid="{358808A6-2D4D-6005-A77E-8AFD31DABAF4}">
-     <File Id="AF_F54" Name="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C53" Guid="{AFE0EF54-4584-466C-B66A-A4AA6B0D74E8}">
+     <File Id="AF_F54" Name="Microsoft.Windows.ApplicationModel.Background.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.Background.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C55" Guid="{9CFCCDBA-57EE-BE27-2550-20FCA140CD74}">
-     <File Id="AF_F56" Name="Microsoft.Windows.AppLifecycle.Projection.dll" Source="$(UI)\Microsoft.Windows.AppLifecycle.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C55" Guid="{258832C8-0240-D706-8C4F-3B3FF48A1649}">
+     <File Id="AF_F56" Name="Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.DynamicDependency.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C57" Guid="{A33A62A4-375F-4FBF-1F49-A9C2CA6C035F}">
-     <File Id="AF_F58" Name="Microsoft.Windows.AppNotifications.Builder.Projection.dll" Source="$(UI)\Microsoft.Windows.AppNotifications.Builder.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C57" Guid="{3654AB51-FFF6-8D50-6756-EE82349095C6}">
+     <File Id="AF_F58" Name="Microsoft.Windows.ApplicationModel.Resources.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.Resources.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C59" Guid="{B0838E6C-BD46-5DDD-87FC-04940FAAACF9}">
-     <File Id="AF_F60" Name="Microsoft.Windows.AppNotifications.Projection.dll" Source="$(UI)\Microsoft.Windows.AppNotifications.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C59" Guid="{358808A6-2D4D-6005-A77E-8AFD31DABAF4}">
+     <File Id="AF_F60" Name="Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" Source="$(UI)\Microsoft.Windows.ApplicationModel.WindowsAppRuntime.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C61" Guid="{3B0A669C-FC2A-CB78-3BDC-C16F428A673C}">
-     <File Id="AF_F62" Name="Microsoft.Windows.BadgeNotifications.Projection.dll" Source="$(UI)\Microsoft.Windows.BadgeNotifications.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C61" Guid="{9CFCCDBA-57EE-BE27-2550-20FCA140CD74}">
+     <File Id="AF_F62" Name="Microsoft.Windows.AppLifecycle.Projection.dll" Source="$(UI)\Microsoft.Windows.AppLifecycle.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C63" Guid="{B25E6B4A-9F19-4FA4-300E-9359F2CB7EB0}">
-     <File Id="AF_F64" Name="Microsoft.Windows.Foundation.Projection.dll" Source="$(UI)\Microsoft.Windows.Foundation.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C63" Guid="{A33A62A4-375F-4FBF-1F49-A9C2CA6C035F}">
+     <File Id="AF_F64" Name="Microsoft.Windows.AppNotifications.Builder.Projection.dll" Source="$(UI)\Microsoft.Windows.AppNotifications.Builder.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C65" Guid="{3493624D-AFEF-A247-13D8-80E06239DC25}">
-     <File Id="AF_F66" Name="Microsoft.Windows.Management.Deployment.Projection.dll" Source="$(UI)\Microsoft.Windows.Management.Deployment.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C65" Guid="{B0838E6C-BD46-5DDD-87FC-04940FAAACF9}">
+     <File Id="AF_F66" Name="Microsoft.Windows.AppNotifications.Projection.dll" Source="$(UI)\Microsoft.Windows.AppNotifications.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C67" Guid="{35597E78-B950-F91B-C0A3-9454EFB0CA72}">
-     <File Id="AF_F68" Name="Microsoft.Windows.Media.Capture.Projection.dll" Source="$(UI)\Microsoft.Windows.Media.Capture.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C67" Guid="{3B0A669C-FC2A-CB78-3BDC-C16F428A673C}">
+     <File Id="AF_F68" Name="Microsoft.Windows.BadgeNotifications.Projection.dll" Source="$(UI)\Microsoft.Windows.BadgeNotifications.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C69" Guid="{41534581-FF5A-F66E-BF77-CE438F09CF2E}">
-     <File Id="AF_F70" Name="Microsoft.Windows.PushNotifications.Projection.dll" Source="$(UI)\Microsoft.Windows.PushNotifications.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C69" Guid="{B25E6B4A-9F19-4FA4-300E-9359F2CB7EB0}">
+     <File Id="AF_F70" Name="Microsoft.Windows.Foundation.Projection.dll" Source="$(UI)\Microsoft.Windows.Foundation.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C71" Guid="{504A3B02-E097-C295-82A3-783A90BCE639}">
-     <File Id="AF_F72" Name="Microsoft.Windows.SDK.NET.dll" Source="$(UI)\Microsoft.Windows.SDK.NET.dll" KeyPath="yes" />
+   <Component Id="AF_C71" Guid="{3493624D-AFEF-A247-13D8-80E06239DC25}">
+     <File Id="AF_F72" Name="Microsoft.Windows.Management.Deployment.Projection.dll" Source="$(UI)\Microsoft.Windows.Management.Deployment.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C73" Guid="{673AEE58-B004-476A-94BE-E7997DE43CC7}">
-     <File Id="AF_F74" Name="Microsoft.Windows.Security.AccessControl.Projection.dll" Source="$(UI)\Microsoft.Windows.Security.AccessControl.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C73" Guid="{35597E78-B950-F91B-C0A3-9454EFB0CA72}">
+     <File Id="AF_F74" Name="Microsoft.Windows.Media.Capture.Projection.dll" Source="$(UI)\Microsoft.Windows.Media.Capture.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C75" Guid="{C1ED3CDB-233D-9EA7-A9B8-D58AD3D7A6CA}">
-     <File Id="AF_F76" Name="Microsoft.Windows.Storage.Pickers.Projection.dll" Source="$(UI)\Microsoft.Windows.Storage.Pickers.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C75" Guid="{41534581-FF5A-F66E-BF77-CE438F09CF2E}">
+     <File Id="AF_F76" Name="Microsoft.Windows.PushNotifications.Projection.dll" Source="$(UI)\Microsoft.Windows.PushNotifications.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C77" Guid="{02ACD60A-6344-7DFF-283E-17D46267DF9F}">
-     <File Id="AF_F78" Name="Microsoft.Windows.Storage.Projection.dll" Source="$(UI)\Microsoft.Windows.Storage.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C77" Guid="{504A3B02-E097-C295-82A3-783A90BCE639}">
+     <File Id="AF_F78" Name="Microsoft.Windows.SDK.NET.dll" Source="$(UI)\Microsoft.Windows.SDK.NET.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C79" Guid="{8E4FBA5B-2985-69D1-1B72-CD12F7E1B9F9}">
-     <File Id="AF_F80" Name="Microsoft.Windows.System.Power.Projection.dll" Source="$(UI)\Microsoft.Windows.System.Power.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C79" Guid="{673AEE58-B004-476A-94BE-E7997DE43CC7}">
+     <File Id="AF_F80" Name="Microsoft.Windows.Security.AccessControl.Projection.dll" Source="$(UI)\Microsoft.Windows.Security.AccessControl.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C81" Guid="{ED56DEBF-C28F-D7A4-DB6F-79C1AA178DEC}">
-     <File Id="AF_F82" Name="Microsoft.Windows.System.Projection.dll" Source="$(UI)\Microsoft.Windows.System.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C81" Guid="{C1ED3CDB-233D-9EA7-A9B8-D58AD3D7A6CA}">
+     <File Id="AF_F82" Name="Microsoft.Windows.Storage.Pickers.Projection.dll" Source="$(UI)\Microsoft.Windows.Storage.Pickers.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C83" Guid="{C92ED316-88B0-5B7B-EEA5-896DC3AB2078}">
-     <File Id="AF_F84" Name="Microsoft.Windows.Widgets.Projection.dll" Source="$(UI)\Microsoft.Windows.Widgets.Projection.dll" KeyPath="yes" />
+   <Component Id="AF_C83" Guid="{02ACD60A-6344-7DFF-283E-17D46267DF9F}">
+     <File Id="AF_F84" Name="Microsoft.Windows.Storage.Projection.dll" Source="$(UI)\Microsoft.Windows.Storage.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C85" Guid="{D9E90A6D-5F0E-2837-0A8A-B927A1B545CE}">
-     <File Id="AF_F86" Name="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" Source="$(UI)\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" KeyPath="yes" />
+   <Component Id="AF_C85" Guid="{8E4FBA5B-2985-69D1-1B72-CD12F7E1B9F9}">
+     <File Id="AF_F86" Name="Microsoft.Windows.System.Power.Projection.dll" Source="$(UI)\Microsoft.Windows.System.Power.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C87" Guid="{0FE765F3-E1EA-55E1-69EB-BC89F9BA3BE9}">
-     <File Id="AF_F88" Name="Microsoft.WinUI.dll" Source="$(UI)\Microsoft.WinUI.dll" KeyPath="yes" />
+   <Component Id="AF_C87" Guid="{ED56DEBF-C28F-D7A4-DB6F-79C1AA178DEC}">
+     <File Id="AF_F88" Name="Microsoft.Windows.System.Projection.dll" Source="$(UI)\Microsoft.Windows.System.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C89" Guid="{4AD40224-F57B-0140-C9BF-CB122673EB5E}">
-     <File Id="AF_F90" Name="WinRT.Runtime.dll" Source="$(UI)\WinRT.Runtime.dll" KeyPath="yes" />
+   <Component Id="AF_C89" Guid="{C92ED316-88B0-5B7B-EEA5-896DC3AB2078}">
+     <File Id="AF_F90" Name="Microsoft.Windows.Widgets.Projection.dll" Source="$(UI)\Microsoft.Windows.Widgets.Projection.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C91" Guid="{EC39D949-602D-A32A-E3F8-7C643673D15C}">
-     <File Id="AF_F92" Name="wintun.dll" Source="$(UI)\wintun.dll" KeyPath="yes" />
+   <Component Id="AF_C91" Guid="{D9E90A6D-5F0E-2837-0A8A-B927A1B545CE}">
+     <File Id="AF_F92" Name="Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" Source="$(UI)\Microsoft.WindowsAppRuntime.Bootstrap.Net.dll" KeyPath="yes" />
    </Component>
-   <Component Id="AF_C93" Guid="{F67E945B-6102-23C4-03AB-0147B3658D93}">
-     <File Id="AF_F94" Name="ws-proxy" Source="$(UI)\ws-proxy" KeyPath="yes" />
+   <Component Id="AF_C93" Guid="{0FE765F3-E1EA-55E1-69EB-BC89F9BA3BE9}">
+     <File Id="AF_F94" Name="Microsoft.WinUI.dll" Source="$(UI)\Microsoft.WinUI.dll" KeyPath="yes" />
    </Component>
-      <Directory Id="AF_D95" Name="Assets">
-    <Component Id="AF_C96" Guid="{B20B4066-25D2-4A29-F56B-30F57B075A33}">
-      <File Id="AF_F97" Name="adbtether.svg" Source="$(UI)\Assets\adbtether.svg" KeyPath="yes" />
+   <Component Id="AF_C95" Guid="{136D6790-D8A6-EB57-98C8-E2554BFA1CD5}">
+     <File Id="AF_F96" Name="NOTICE.txt" Source="$(UI)\NOTICE.txt" KeyPath="yes" />
+   </Component>
+   <Component Id="AF_C97" Guid="{4AD40224-F57B-0140-C9BF-CB122673EB5E}">
+     <File Id="AF_F98" Name="WinRT.Runtime.dll" Source="$(UI)\WinRT.Runtime.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="AF_C99" Guid="{EC39D949-602D-A32A-E3F8-7C643673D15C}">
+     <File Id="AF_F100" Name="wintun.dll" Source="$(UI)\wintun.dll" KeyPath="yes" />
+   </Component>
+   <Component Id="AF_C101" Guid="{F67E945B-6102-23C4-03AB-0147B3658D93}">
+     <File Id="AF_F102" Name="ws-proxy" Source="$(UI)\ws-proxy" KeyPath="yes" />
+   </Component>
+      <Directory Id="AF_D103" Name="Assets">
+    <Component Id="AF_C104" Guid="{B20B4066-25D2-4A29-F56B-30F57B075A33}">
+      <File Id="AF_F105" Name="adbtether.svg" Source="$(UI)\Assets\adbtether.svg" KeyPath="yes" />
     </Component>
       </Directory>
-      <Directory Id="AF_D98" Name="Pages">
-    <Component Id="AF_C99" Guid="{7B41CF64-B8DC-A120-05BC-1603F465D7C3}">
-      <File Id="AF_F100" Name="AboutPage.xbf" Source="$(UI)\Pages\AboutPage.xbf" KeyPath="yes" />
+      <Directory Id="AF_D106" Name="Pages">
+    <Component Id="AF_C107" Guid="{7B41CF64-B8DC-A120-05BC-1603F465D7C3}">
+      <File Id="AF_F108" Name="AboutPage.xbf" Source="$(UI)\Pages\AboutPage.xbf" KeyPath="yes" />
     </Component>
-    <Component Id="AF_C101" Guid="{B23A401F-8D67-6C3A-1D11-4F7606561B99}">
-      <File Id="AF_F102" Name="HomePage.xbf" Source="$(UI)\Pages\HomePage.xbf" KeyPath="yes" />
+    <Component Id="AF_C109" Guid="{B23A401F-8D67-6C3A-1D11-4F7606561B99}">
+      <File Id="AF_F110" Name="HomePage.xbf" Source="$(UI)\Pages\HomePage.xbf" KeyPath="yes" />
     </Component>
-    <Component Id="AF_C103" Guid="{28A7B998-0C5B-1E0A-69DE-6392028F2871}">
-      <File Id="AF_F104" Name="LogPage.xbf" Source="$(UI)\Pages\LogPage.xbf" KeyPath="yes" />
+    <Component Id="AF_C111" Guid="{28A7B998-0C5B-1E0A-69DE-6392028F2871}">
+      <File Id="AF_F112" Name="LogPage.xbf" Source="$(UI)\Pages\LogPage.xbf" KeyPath="yes" />
     </Component>
-    <Component Id="AF_C105" Guid="{1D2D32F1-616A-3EC3-7B21-B32BD9622B31}">
-      <File Id="AF_F106" Name="SettingsPage.xbf" Source="$(UI)\Pages\SettingsPage.xbf" KeyPath="yes" />
+    <Component Id="AF_C113" Guid="{1D2D32F1-616A-3EC3-7B21-B32BD9622B31}">
+      <File Id="AF_F114" Name="SettingsPage.xbf" Source="$(UI)\Pages\SettingsPage.xbf" KeyPath="yes" />
     </Component>
       </Directory>
-      <Directory Id="AF_D107" Name="runtimes">
-   <Directory Id="AF_D108" Name="win-arm64">
-    <Directory Id="AF_D109" Name="native">
-      <Component Id="AF_C110" Guid="{AFB5B6FF-EA02-42DC-FF35-3FAE50C0C167}">
-        <File Id="AF_F111" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-arm64\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="AF_C112" Guid="{1F5452BF-96B7-24C6-7D1A-8C6DF4059EAF}">
-        <File Id="AF_F113" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-arm64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="AF_C114" Guid="{48D9442D-16AC-460F-F33A-DF700E1CB2B5}">
-        <File Id="AF_F115" Name="WebView2Loader.dll" Source="$(UI)\runtimes\win-arm64\native\WebView2Loader.dll" KeyPath="yes" />
-      </Component>
-    </Directory>
-   </Directory>
-   <Directory Id="AF_D116" Name="win-arm64ec">
+      <Directory Id="AF_D115" Name="runtimes">
+   <Directory Id="AF_D116" Name="win-arm64">
     <Directory Id="AF_D117" Name="native">
-      <Component Id="AF_C118" Guid="{3076BA5D-B6A0-1A7D-7822-A4531D031DAB}">
-        <File Id="AF_F119" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-arm64ec\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
+      <Component Id="AF_C118" Guid="{AFB5B6FF-EA02-42DC-FF35-3FAE50C0C167}">
+        <File Id="AF_F119" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-arm64\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
       </Component>
-      <Component Id="AF_C120" Guid="{B3052861-6E8E-D645-DAF1-E453C1E23241}">
-        <File Id="AF_F121" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-arm64ec\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
+      <Component Id="AF_C120" Guid="{1F5452BF-96B7-24C6-7D1A-8C6DF4059EAF}">
+        <File Id="AF_F121" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-arm64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
       </Component>
-    </Directory>
-   </Directory>
-   <Directory Id="AF_D122" Name="win-x64">
-    <Directory Id="AF_D123" Name="native">
-      <Component Id="AF_C124" Guid="{15D661E0-B7BF-56D0-83E9-BA9BAE89B821}">
-        <File Id="AF_F125" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-x64\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="AF_C126" Guid="{F275360F-2792-E869-288C-69D2AA1CEBBB}">
-        <File Id="AF_F127" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
-      </Component>
-      <Component Id="AF_C128" Guid="{4AE1AFEB-BDA8-88DD-E012-AE87B337C24B}">
-        <File Id="AF_F129" Name="WebView2Loader.dll" Source="$(UI)\runtimes\win-x64\native\WebView2Loader.dll" KeyPath="yes" />
+      <Component Id="AF_C122" Guid="{48D9442D-16AC-460F-F33A-DF700E1CB2B5}">
+        <File Id="AF_F123" Name="WebView2Loader.dll" Source="$(UI)\runtimes\win-arm64\native\WebView2Loader.dll" KeyPath="yes" />
       </Component>
     </Directory>
    </Directory>
-   <Directory Id="AF_D130" Name="win-x86">
+   <Directory Id="AF_D124" Name="win-arm64ec">
+    <Directory Id="AF_D125" Name="native">
+      <Component Id="AF_C126" Guid="{3076BA5D-B6A0-1A7D-7822-A4531D031DAB}">
+        <File Id="AF_F127" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-arm64ec\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="AF_C128" Guid="{B3052861-6E8E-D645-DAF1-E453C1E23241}">
+        <File Id="AF_F129" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-arm64ec\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
+      </Component>
+    </Directory>
+   </Directory>
+   <Directory Id="AF_D130" Name="win-x64">
     <Directory Id="AF_D131" Name="native">
-      <Component Id="AF_C132" Guid="{2CEABD8C-6899-1C82-22FE-17F25C380292}">
-        <File Id="AF_F133" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-x86\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
+      <Component Id="AF_C132" Guid="{15D661E0-B7BF-56D0-83E9-BA9BAE89B821}">
+        <File Id="AF_F133" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-x64\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
       </Component>
-      <Component Id="AF_C134" Guid="{E5E40F4B-594B-BDEA-1A15-A454C4ACA625}">
-        <File Id="AF_F135" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-x86\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
+      <Component Id="AF_C134" Guid="{F275360F-2792-E869-288C-69D2AA1CEBBB}">
+        <File Id="AF_F135" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-x64\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
       </Component>
-      <Component Id="AF_C136" Guid="{25DFF616-F962-B10E-D8CF-9EA9648466FB}">
-        <File Id="AF_F137" Name="WebView2Loader.dll" Source="$(UI)\runtimes\win-x86\native\WebView2Loader.dll" KeyPath="yes" />
+      <Component Id="AF_C136" Guid="{4AE1AFEB-BDA8-88DD-E012-AE87B337C24B}">
+        <File Id="AF_F137" Name="WebView2Loader.dll" Source="$(UI)\runtimes\win-x64\native\WebView2Loader.dll" KeyPath="yes" />
+      </Component>
+    </Directory>
+   </Directory>
+   <Directory Id="AF_D138" Name="win-x86">
+    <Directory Id="AF_D139" Name="native">
+      <Component Id="AF_C140" Guid="{2CEABD8C-6899-1C82-22FE-17F25C380292}">
+        <File Id="AF_F141" Name="Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" Source="$(UI)\runtimes\win-x86\native\Microsoft.Windows.ApplicationModel.Background.UniversalBGTask.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="AF_C142" Guid="{E5E40F4B-594B-BDEA-1A15-A454C4ACA625}">
+        <File Id="AF_F143" Name="Microsoft.WindowsAppRuntime.Bootstrap.dll" Source="$(UI)\runtimes\win-x86\native\Microsoft.WindowsAppRuntime.Bootstrap.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="AF_C144" Guid="{25DFF616-F962-B10E-D8CF-9EA9648466FB}">
+        <File Id="AF_F145" Name="WebView2Loader.dll" Source="$(UI)\runtimes\win-x86\native\WebView2Loader.dll" KeyPath="yes" />
       </Component>
     </Directory>
    </Directory>
       </Directory>
-      <Directory Id="AF_D138" Name="Views">
-    <Component Id="AF_C139" Guid="{1E2E1F86-808F-DFEF-9811-E6515F937768}">
-      <File Id="AF_F140" Name="ServiceOfflineDialog.xbf" Source="$(UI)\Views\ServiceOfflineDialog.xbf" KeyPath="yes" />
+      <Directory Id="AF_D146" Name="Views">
+    <Component Id="AF_C147" Guid="{1E2E1F86-808F-DFEF-9811-E6515F937768}">
+      <File Id="AF_F148" Name="ServiceOfflineDialog.xbf" Source="$(UI)\Views\ServiceOfflineDialog.xbf" KeyPath="yes" />
     </Component>
-    <Component Id="AF_C141" Guid="{5CD22C90-CDAE-027A-B79F-BDC8E41ABDF6}">
-      <File Id="AF_F142" Name="UpdateDialog.xbf" Source="$(UI)\Views\UpdateDialog.xbf" KeyPath="yes" />
+    <Component Id="AF_C149" Guid="{5CD22C90-CDAE-027A-B79F-BDC8E41ABDF6}">
+      <File Id="AF_F150" Name="UpdateDialog.xbf" Source="$(UI)\Views\UpdateDialog.xbf" KeyPath="yes" />
     </Component>
       </Directory>
     </DirectoryRef>
@@ -269,24 +281,28 @@
       <ComponentRef Id="AF_C89" />
       <ComponentRef Id="AF_C91" />
       <ComponentRef Id="AF_C93" />
-      <ComponentRef Id="AF_C96" />
+      <ComponentRef Id="AF_C95" />
+      <ComponentRef Id="AF_C97" />
       <ComponentRef Id="AF_C99" />
       <ComponentRef Id="AF_C101" />
-      <ComponentRef Id="AF_C103" />
-      <ComponentRef Id="AF_C105" />
-      <ComponentRef Id="AF_C110" />
-      <ComponentRef Id="AF_C112" />
-      <ComponentRef Id="AF_C114" />
+      <ComponentRef Id="AF_C104" />
+      <ComponentRef Id="AF_C107" />
+      <ComponentRef Id="AF_C109" />
+      <ComponentRef Id="AF_C111" />
+      <ComponentRef Id="AF_C113" />
       <ComponentRef Id="AF_C118" />
       <ComponentRef Id="AF_C120" />
-      <ComponentRef Id="AF_C124" />
+      <ComponentRef Id="AF_C122" />
       <ComponentRef Id="AF_C126" />
       <ComponentRef Id="AF_C128" />
       <ComponentRef Id="AF_C132" />
       <ComponentRef Id="AF_C134" />
       <ComponentRef Id="AF_C136" />
-      <ComponentRef Id="AF_C139" />
-      <ComponentRef Id="AF_C141" />
+      <ComponentRef Id="AF_C140" />
+      <ComponentRef Id="AF_C142" />
+      <ComponentRef Id="AF_C144" />
+      <ComponentRef Id="AF_C147" />
+      <ComponentRef Id="AF_C149" />
     </ComponentGroup>
   </Fragment>
 </Wix>

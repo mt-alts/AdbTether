@@ -272,6 +272,7 @@ AdbTether/
 |---|---|
 | Microsoft.WindowsAppSDK 1.8 | WinUI 3 runtime |
 | AdvancedSharpAdbClient 3.6.16 | ADB device management |
+| Android SDK Platform-Tools 36.0.2 | Bundled `adb.exe`; Apache 2.0 |
 
 ### Packaging
 
