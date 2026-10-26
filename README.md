@@ -12,6 +12,26 @@ through `adb forward`.
 |---|---|
 | <img src="docs/screenshot-disconnected.png" alt="AdbTether with the tunnel off" width="420"> | <img src="docs/screenshot-connected.png" alt="AdbTether with the tunnel active" width="420"> |
 
+## Requirements
+
+The MSI is a framework-dependent build: it does not bundle the .NET or
+Windows App SDK runtimes.
+
+- Windows 10 1809 or newer, or Windows 11 (x64)
+- [.NET 10 Runtime (x64)](https://dotnet.microsoft.com/download/dotnet/10.0)
+- [Windows App Runtime 1.8 (x64)](https://learn.microsoft.com/windows/apps/windows-app-sdk/downloads)
+- [Android SDK Platform-Tools](https://developer.android.com/tools/releases/platform-tools) -
+  AdbTether does not bundle `adb.exe`; it must be on `PATH`, next to
+  `AdbTether.exe`, or in a standard SDK location
+- An Android device with USB debugging or wireless debugging enabled, authorised
+  for ADB
+
+Install the runtimes before launching AdbTether. If the .NET 10 Runtime is
+missing when the MSI runs, the service fails to start with **error 1053** and
+Windows does not show the underlying runtime error; install the runtime, then
+start `AdbTetherService` again (or repair the installation). The UI needs the
+Windows App Runtime and does not launch without it.
+
 ## Goals
 
 - **Tether over ADB.** Share the phone's connection with the PC using only the
@@ -84,7 +104,7 @@ AdbTether/
 └── docs/
 ```
 
-## Prerequisites
+## Build prerequisites
 
 | Tool | Version | Notes |
 |---|---|---|
