@@ -155,7 +155,7 @@ try {
             powershell -NoProfile -File "installer\gen_fragments.ps1" -Source $svcBin -VarName SVC -Group ServiceFilesGroup -DirRef SERVICEDIR -OutFile "installer\ServiceFiles.wxs" -Prefix SV_ -Service
 
             Step "Building MSI"
-            wix build -arch x64 -d "UI=$uiBin" -d "SVC=$svcBin" -o "installer\dist\AdbTether.msi" `
+            wix build -arch x64 -ext WixToolset.UI.wixext -d "UI=$uiBin" -d "SVC=$svcBin" -o "installer\dist\AdbTether.msi" `
                 "installer\Product.wxs" "installer\AppFiles.wxs" "installer\ServiceFiles.wxs"
             if ($LASTEXITCODE -ne 0) { Fail "MSI build failed" }
         }
