@@ -108,6 +108,10 @@ try {
         if ($LASTEXITCODE -ne 0) { Fail "ws-proxy build failed" }
     }
 
+    Step "Building installer CA"
+    & $cargo build --release -p adbtether-installer-ca
+    if ($LASTEXITCODE -ne 0) { Fail "installer CA build failed" }
+
     # ------------------------------------------------------------------
     # 4. .NET: service + WinUI 3 app
     # ------------------------------------------------------------------
@@ -155,7 +159,9 @@ try {
             powershell -NoProfile -File "installer\gen_fragments.ps1" -Source $svcBin -VarName SVC -Group ServiceFilesGroup -DirRef SERVICEDIR -OutFile "installer\ServiceFiles.wxs" -Prefix SV_ -Service
 
             Step "Building MSI"
-            wix build -arch x64 -ext WixToolset.UI.wixext -ext WixToolset.Util.wixext -d "UI=$uiBin" -d "SVC=$svcBin" -o "installer\dist\AdbTether.msi" `
+            $requiredMb = [math]::Ceiling((Get-ChildItem @($uiBin, $svcBin) -Recurse -File |
+                Measure-Object Length -Sum).Sum / 1MB)
+            wix build -arch x64 -ext WixToolset.UI.wixext -ext WixToolset.Util.wixext -d "UI=$uiBin" -d "SVC=$svcBin" -d "RequiredSpaceMB=$requiredMb" -o "installer\dist\AdbTether.msi" `
                 "installer\Product.wxs" "installer\AppFiles.wxs" "installer\ServiceFiles.wxs"
             if ($LASTEXITCODE -ne 0) { Fail "MSI build failed" }
         }

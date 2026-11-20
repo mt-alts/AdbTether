@@ -16,12 +16,17 @@
 
     <Property Id="INSTALLDESKTOPSHORTCUT" Value="1" />
     <Property Id="INSTALLSTARTMENUSHORTCUT" Value="1" />
+    <Property Id="REQUIRED_SPACE_MB" Value="$(var.RequiredSpaceMB)" />
 
     <WixVariable Id="WixUILicenseRtf" Value="installer\License.rtf" />
     <WixVariable Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch AdbTether" />
 
     <CustomAction Id="LaunchApplication" Directory="APPDIR" ExeCommand="AdbTether.exe"
                   Execute="immediate" Impersonate="yes" Return="asyncNoWait" />
+
+    <Binary Id="InstallerCA" SourceFile="target\release\adbtether_installer_ca.dll" />
+    <CustomAction Id="SetDiskSpace" BinaryRef="InstallerCA"
+                  DllEntry="SetDiskSpace" Return="ignore" />
 
     <UI>
       <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction"
@@ -34,6 +39,10 @@
 
       <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog"
                Value="InstallDirDiskDlg" Order="10"
+               Condition="LicenseAccepted = &quot;1&quot;" />
+
+      <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="DoAction"
+               Value="SetDiskSpace" Order="2"
                Condition="LicenseAccepted = &quot;1&quot;" />
 
       <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog"
@@ -101,11 +110,12 @@
           <Publish Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" />
           <Publish Event="SpawnDialog" Value="BrowseDlg" />
           <Publish Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" />
+          <Publish Event="DoAction" Value="SetDiskSpace" Order="4" />
         </Control>
-        <Control Id="DiskSpaceLabel" Type="Text" X="20" Y="118" Width="300" Height="15"
-                 Text="Available and required disk space:" NoPrefix="yes" Transparent="yes" TabSkip="yes" />
-        <Control Id="VolumeList" Type="VolumeCostList" X="20" Y="135" Width="330" Height="85"
-                 Text="{85}{55}{60}{60}{60}" Sunken="yes" Fixed="yes" Remote="yes" TabSkip="yes" />
+        <Control Id="FreeSpaceLabel" Type="Text" X="20" Y="185" Width="330" Height="15"
+                 Text="Free space: [AVAILABLE_SPACE]" NoPrefix="yes" Transparent="yes" TabSkip="yes" />
+        <Control Id="RequiredSpaceLabel" Type="Text" X="20" Y="203" Width="330" Height="15"
+                 Text="Required space: [REQUIRED_SPACE_MB] MB" NoPrefix="yes" Transparent="yes" TabSkip="yes" />
       </Dialog>
     </UI>
 

@@ -1,6 +1,6 @@
 ﻿[workspace]
 resolver = "2"
-members = ["crates/engine", "crates/ws-proxy"]
+members = ["crates/engine", "crates/ws-proxy", "crates/installer-ca"]
 
 # The Windows engine (`AdbTether_core.dll`) and the Android-side `ws-proxy`
 # share one lockfile. The engine builds for the host (Windows); ws-proxy
