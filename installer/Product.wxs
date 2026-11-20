@@ -33,11 +33,11 @@
                Condition="NOT Installed AND WIXUI_INSTALLDIR_VALID = 1" />
 
       <Publish Dialog="LicenseAgreementDlg" Control="Next" Event="NewDialog"
-               Value="InstallDirDiskDlg" Order="0"
+               Value="InstallDirDiskDlg" Order="10"
                Condition="LicenseAccepted = &quot;1&quot;" />
 
       <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog"
-               Value="ShortcutsDlg" Order="0"
+               Value="ShortcutsDlg" Order="10"
                Condition="NOT Installed" />
 
       <Dialog Id="ShortcutsDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] Setup">
@@ -105,7 +105,7 @@
         <Control Id="DiskSpaceLabel" Type="Text" X="20" Y="118" Width="300" Height="15"
                  Text="Available and required disk space:" NoPrefix="yes" Transparent="yes" TabSkip="yes" />
         <Control Id="VolumeList" Type="VolumeCostList" X="20" Y="135" Width="330" Height="85"
-                 Text="{120}{70}{70}{70}{70}" Sunken="yes" Fixed="yes" Remote="yes" TabSkip="yes" />
+                 Text="{85}{55}{60}{60}{60}" Sunken="yes" Fixed="yes" Remote="yes" TabSkip="yes" />
       </Dialog>
     </UI>
 
