@@ -40,7 +40,7 @@
                         <TextBlock Text="Engine: Rust + WebSocket + Wintun" FontSize="11"
                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
                     </StackPanel>
-                    <TextBlock Grid.Column="1" Text="0.1.0" FontSize="13"
+                    <TextBlock x:Name="VersionText" Grid.Column="1" FontSize="13"
                                Foreground="{ThemeResource TextFillColorPrimaryBrush}" VerticalAlignment="Center"/>
                 </Grid>
             </Border>

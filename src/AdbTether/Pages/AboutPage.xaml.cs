@@ -8,6 +8,7 @@ public sealed partial class AboutPage : Page
     public AboutPage()
     {
         InitializeComponent();
+        VersionText.Text = AppInfo.CurrentVersion;
         GitHubLink.NavigateUri = new Uri(AppInfo.RepositoryUrl);
     }
 }

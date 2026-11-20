@@ -14,5 +14,5 @@ public static class AppInfo
     public const string RepositoryUrl = "https://www.github.com/mt-alts/AdbTether";
 
     public static string CurrentVersion =>
-        Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "0.1.0";
+        Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "unknown";
 }
