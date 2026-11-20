@@ -15,8 +15,24 @@
       </DirectorySearch>
     </Property>
 
-    <Launch Condition="Installed OR (VersionNT64 AND WindowsBuild >= 17763)"
+    <!-- Windows Installer reports VersionNT 6.3 and WindowsBuild 9600 on
+         Windows 10 and 11 for compatibility, so read the real version from
+         the registry instead. -->
+    <Property Id="OS_MAJOR">
+      <RegistrySearch Id="OSMajorVersion" Root="HKLM"
+                      Key="SOFTWARE\Microsoft\Windows NT\CurrentVersion"
+                      Name="CurrentMajorVersionNumber" Type="raw" Bitness="always64" />
+    </Property>
+
+    <Property Id="OS_BUILD">
+      <RegistrySearch Id="OSBuildNumber" Root="HKLM"
+                      Key="SOFTWARE\Microsoft\Windows NT\CurrentVersion"
+                      Name="CurrentBuildNumber" Type="raw" Bitness="always64" />
+    </Property>
+
+    <Launch Condition="Installed OR (VersionNT64 AND (OS_MAJOR = &quot;#10&quot; OR OS_MAJOR = &quot;10&quot;) AND OS_BUILD &gt;= &quot;17763&quot;)"
             Message="AdbTether requires 64-bit Windows 10 version 1809 (build 17763) or newer, or Windows 11." />
+
 
     <Launch Condition="Installed OR DOTNET_RUNTIME"
             Message="AdbTether requires the .NET 10 Runtime (x64). Install it from https://dotnet.microsoft.com/download/dotnet/10.0 and run setup again." />
