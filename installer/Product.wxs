@@ -1,5 +1,6 @@
 ﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
-     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui"
+     xmlns:util="http://wixtoolset.org/schemas/v4/wxs/util">
   <Package Name="AdbTether" Manufacturer="AdbTether"
            Version="0.1.6.0" UpgradeCode="{376E0119-4DE5-4D21-A82B-E5EFA9785F8D}"
            Scope="perMachine" InstallerVersion="500" Compressed="yes">
@@ -9,6 +10,12 @@
     <MediaTemplate EmbedCab="yes" />
 
     <ui:WixUI Id="WixUI_InstallDir" InstallDirectory="INSTALLFOLDER" />
+
+    <util:CloseApplication Id="CloseAdbTether" Target="AdbTether.exe"
+                           CloseMessage="no" RebootPrompt="no" TerminateProcess="1" />
+
+    <Property Id="INSTALLDESKTOPSHORTCUT" Value="1" />
+    <Property Id="INSTALLSTARTMENUSHORTCUT" Value="1" />
 
     <WixVariable Id="WixUILicenseRtf" Value="installer\License.rtf" />
     <WixVariable Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch AdbTether" />
@@ -20,6 +27,36 @@
       <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction"
                Value="LaunchApplication"
                Condition="WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed" />
+
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog"
+               Value="ShortcutsDlg" Order="3"
+               Condition="NOT Installed AND WIXUI_INSTALLDIR_VALID = 1" />
+
+      <Dialog Id="ShortcutsDlg" X="50" Y="50" Width="370" Height="270" Title="[ProductName] Setup">
+      <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17"
+               Text="&amp;Next" Default="yes">
+        <Publish Event="NewDialog" Value="VerifyReadyDlg" />
+      </Control>
+      <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="&amp;Back">
+        <Publish Event="NewDialog" Value="InstallDirDlg" />
+      </Control>
+      <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17"
+               Text="Cancel" Cancel="yes">
+        <Publish Event="SpawnDialog" Value="CancelDlg" />
+      </Control>
+      <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44"
+               Text="WixUI_Bmp_Banner" Disabled="yes" TabSkip="no" />
+      <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15"
+               Text="Choose which shortcuts setup should create." Transparent="yes" NoPrefix="yes" TabSkip="yes" />
+      <Control Id="Title" Type="Text" X="15" Y="6" Width="200" Height="15"
+               Text="{\WixUI_Font_Title}Shortcuts" Transparent="yes" NoPrefix="yes" TabSkip="yes" />
+      <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="373" Height="0" Disabled="yes" TabSkip="yes" />
+      <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="373" Height="0" Disabled="yes" TabSkip="yes" />
+      <Control Id="DesktopShortcutCheckBox" Type="CheckBox" X="20" Y="80" Width="300" Height="17"
+               Text="Create a desktop shortcut" Property="INSTALLDESKTOPSHORTCUT" CheckBoxValue="1" />
+      <Control Id="StartMenuShortcutCheckBox" Type="CheckBox" X="20" Y="105" Width="300" Height="17"
+               Text="Create a Start menu shortcut" Property="INSTALLSTARTMENUSHORTCUT" CheckBoxValue="1" />
+      </Dialog>
     </UI>
 
     <!-- AdbTether targets .NET 10. Refuse a fresh install without the x64
@@ -61,7 +98,8 @@
 
     <StandardDirectory Id="ProgramMenuFolder">
       <Directory Id="MenuDir" Name="AdbTether">
-        <Component Id="StartMenuShortcut" Guid="{8976E1BF-07AF-422F-B41F-AA217509647F}">
+        <Component Id="StartMenuShortcut" Guid="{8976E1BF-07AF-422F-B41F-AA217509647F}"
+                   Condition="INSTALLSTARTMENUSHORTCUT = 1">
           <Shortcut Id="SmShortcut" Name="AdbTether"
                     Target="[APPDIR]AdbTether.exe" WorkingDirectory="APPDIR" />
           <RemoveFolder Directory="MenuDir" On="uninstall" />
@@ -72,7 +110,8 @@
     </StandardDirectory>
 
     <StandardDirectory Id="DesktopFolder">
-      <Component Id="DesktopShortcut" Guid="{D36B929B-A6C9-4AC6-B19B-97EF4CAD3E35}">
+      <Component Id="DesktopShortcut" Guid="{D36B929B-A6C9-4AC6-B19B-97EF4CAD3E35}"
+                 Condition="INSTALLDESKTOPSHORTCUT = 1">
         <Shortcut Id="DeskShortcut" Name="AdbTether"
                   Target="[APPDIR]AdbTether.exe" WorkingDirectory="APPDIR" />
         <RegistryValue Root="HKCU" Key="Software\AdbTether"

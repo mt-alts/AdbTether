@@ -104,6 +104,8 @@ public sealed class UpdateService : IUpdateService
 
         progress?.Report(100);
 
+        StopBundledAdb();
+
         // Run the MSI unattended: /passive shows only a progress bar. The package is
         // per-machine (it installs the service), so runas raises the UAC prompt it needs.
         Process.Start(new ProcessStartInfo(MsiexecExe, $"/i \"{destPath}\" {PassiveArg}")
@@ -112,5 +114,40 @@ public sealed class UpdateService : IUpdateService
             Verb = "runas",
             WorkingDirectory = Path.GetTempPath(),
         });
+    }
+
+    /// <summary>
+    /// Stops the adb server only when its executable is the copy shipped next
+    /// to AdbTether.exe. An adb server started by Android Studio, Genymotion or
+    /// another SDK must keep running.
+    /// </summary>
+    private static void StopBundledAdb()
+    {
+        string bundledAdb = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "adb.exe"));
+
+        foreach (Process process in Process.GetProcessesByName("adb"))
+        {
+            try
+            {
+                string? path = process.MainModule?.FileName;
+                if (path is null ||
+                    !string.Equals(Path.GetFullPath(path), bundledAdb, StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                process.Kill();
+                process.WaitForExit(2000);
+            }
+            catch (Exception)
+            {
+                // The process exited or its module is not readable. Never kill
+                // by name alone; an unreadable path is not proof it is ours.
+            }
+            finally
+            {
+                process.Dispose();
+            }
+        }
     }
 }
