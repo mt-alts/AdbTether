@@ -22,6 +22,8 @@
   <ItemGroup>
     <Content Include="adbtether.ico" />
     <Content Include="Assets\adbtether.svg" />
+    <Content Include="Assets\Help.md" />
+    <Content Include="Assets\Markdig.LICENSE.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Markdig" Version="1.6.0" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.8.250907003" />
     <PackageReference Include="AdvancedSharpAdbClient" Version="3.6.16" />
   </ItemGroup>

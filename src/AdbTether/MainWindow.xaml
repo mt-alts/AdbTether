@@ -5,6 +5,9 @@
   Title="AdbTether"
 >
   <Grid x:Name="RootGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid.KeyboardAccelerators>
+      <KeyboardAccelerator Key="F1" Invoked="HelpAccelerator_Invoked" />
+    </Grid.KeyboardAccelerators>
     <Grid.RowDefinitions>
       <RowDefinition Height="32" />
       <RowDefinition Height="*" />
@@ -58,6 +61,11 @@
         </NavigationView.MenuItems>
 
         <NavigationView.FooterMenuItems>
+          <NavigationViewItem x:Name="HelpNavItem" Content="Help" Tag="help">
+            <NavigationViewItem.Icon>
+              <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE897;" />
+            </NavigationViewItem.Icon>
+          </NavigationViewItem>
           <NavigationViewItem Content="About" Tag="about">
             <NavigationViewItem.Icon>
               <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" />

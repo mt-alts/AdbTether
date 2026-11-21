@@ -5,6 +5,7 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Windows.UI;
 
 namespace AdbTether;
@@ -119,10 +120,25 @@ public sealed partial class MainWindow : Window
             case AppPage.About:
                 ContentFrame.Navigate(typeof(AboutPage));
                 break;
+            case AppPage.Help:
+                ContentFrame.Navigate(typeof(HelpPage));
+                break;
             case AppPage.Settings:
                 ContentFrame.Navigate(typeof(SettingsPage), ViewModel);
                 break;
         }
+    }
+
+    private void HelpAccelerator_Invoked(
+        KeyboardAccelerator sender,
+        KeyboardAcceleratorInvokedEventArgs args)
+    {
+        args.Handled = true;
+
+        if (!ReferenceEquals(NavView.SelectedItem, HelpNavItem))
+            NavView.SelectedItem = HelpNavItem;
+        else
+            Navigate(AppPage.Help);
     }
 
     /// <summary>Pages reachable from the navigation view; names match the XAML tags.</summary>
@@ -130,6 +146,7 @@ public sealed partial class MainWindow : Window
     {
         Home,
         Log,
+        Help,
         About,
         Settings,
     }
