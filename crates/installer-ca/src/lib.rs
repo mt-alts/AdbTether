@@ -11,6 +11,13 @@ extern "system" {
         length: *mut u32,
     ) -> u32;
 
+    fn MsiGetTargetPathW(
+        install: u32,
+        folder: *const u16,
+        buffer: *mut u16,
+        length: *mut u32,
+    ) -> u32;
+
     fn MsiSetPropertyW(install: u32, name: *const u16, value: *const u16) -> u32;
 }
 
@@ -53,15 +60,27 @@ fn set_property(install: u32, name: &str, value: &str) {
     }
 }
 
+fn target_path(install: u32) -> Option<String> {
+    let folder = wide("INSTALLFOLDER");
+    let mut buffer = [0u16; 1024];
+    let mut length = buffer.len() as u32;
+
+    let result = unsafe {
+        MsiGetTargetPathW(install, folder.as_ptr(), buffer.as_mut_ptr(), &mut length)
+    };
+
+    if result != 0 || length == 0 {
+        return None;
+    }
+
+    Some(String::from_utf16_lossy(&buffer[..length as usize]))
+}
+
 #[no_mangle]
 pub extern "system" fn SetDiskSpace(install: u32) -> u32 {
-    let mut path = property(install, "INSTALLFOLDER").unwrap_or_default();
-
-    // Directory properties are resolved after costing. Fall back to TARGETDIR
-    // if the value is still a bare directory identifier.
-    if !path.contains(':') && !path.starts_with("\\\\") {
-        path = property(install, "TARGETDIR").unwrap_or_default();
-    }
+    let path = target_path(install)
+        .or_else(|| property(install, "INSTALLFOLDER"))
+        .unwrap_or_default();
 
     if path.is_empty() {
         set_property(install, "AVAILABLE_SPACE", "unknown");
