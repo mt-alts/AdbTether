@@ -121,6 +121,24 @@
                                        Foreground="{ThemeResource AccentFillColorDefaultBrush}">Apache-2.0</Hyperlink>
                         </TextBlock>
                     </Grid>
+                    <!-- Markdig -->
+                    <Grid Padding="16,10" ColumnSpacing="14" BorderThickness="0,1,0,0"
+                          BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Spacing="1">
+                            <TextBlock Text="Markdig" FontSize="13" FontWeight="SemiBold"
+                                       Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+                            <TextBlock Text="Markdown parser for the offline help page" FontSize="11"
+                                       Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
+                        </StackPanel>
+                        <TextBlock Grid.Column="1" FontSize="11" VerticalAlignment="Center">
+                            <Hyperlink NavigateUri="https://github.com/xoofx/markdig/blob/master/license.txt" UnderlineStyle="None"
+                                       Foreground="{ThemeResource AccentFillColorDefaultBrush}">BSD-2-Clause</Hyperlink>
+                        </TextBlock>
+                    </Grid>
                     <!-- Android ADB (platform-tools) -->
                     <Grid Padding="16,10" ColumnSpacing="14" BorderThickness="0,1,0,0"
                           BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}">
